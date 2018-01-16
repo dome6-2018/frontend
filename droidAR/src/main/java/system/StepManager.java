@@ -11,7 +11,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
 import android.os.Handler;
-import android.util.FloatMath;
 
 /**
  * @author Paul Smith code@uvwxy.de
