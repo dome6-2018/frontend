@@ -119,7 +119,7 @@ public abstract class Setup {
 
 	private SystemUpdater worldUpdater;
 
-	private static Integer screenOrientation = Surface.ROTATION_90;
+	private static Integer screenOrientation = Surface.ROTATION_180;
 
 	public Setup() {
 		this(true);
@@ -148,7 +148,7 @@ public abstract class Setup {
 		if (screenOrientation == null) {
 			Log.e(LOG_TAG, "screenOrientation was not set! Will asume"
 					+ " default 90 degree rotation for screen");
-			return Surface.ROTATION_90;
+			return Surface.ROTATION_180;
 		}
 		return screenOrientation;
 	}
@@ -427,8 +427,8 @@ public abstract class Setup {
 
 	private void addGUIOverlay() {
 		// add overlay view as an content view to the activity:
-		myTargetActivity.addContentView(myOverlayView, new LayoutParams(
-				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		//myTargetActivity.addContentView(myOverlayView, new LayoutParams(
+		//		LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 	}
 
 	public void addGLSurfaceOverlay() {
