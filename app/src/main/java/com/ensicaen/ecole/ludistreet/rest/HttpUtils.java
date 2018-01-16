@@ -3,9 +3,6 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.SyncHttpClient;
-/**
- * Created by Thibaud on 16/01/2018.
- */
 
 /**
  * Created by Thibaud on 26/10/2017.
