@@ -2,7 +2,7 @@
 <manifest
 
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bryan.testar"
+    package="com.ensicaen.ecole.ludistreet"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -24,12 +24,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace = "android:icon">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.ensicaen.ecole.ludistreet.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ensicaen.ecole.ludistreet.beacon.RangingActivity">
         </activity>
     </application>
 

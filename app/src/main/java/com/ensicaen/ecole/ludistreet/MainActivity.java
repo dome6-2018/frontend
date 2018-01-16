@@ -1,9 +1,6 @@
-package com.example.bryan.testar;
+package com.ensicaen.ecole.ludistreet;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -11,31 +8,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import javax.microedition.khronos.opengles.GL;
 
 import gl.Color;
 import gl.GL1Renderer;
-import gl.GLCamera;
 import gl.GLFactory;
 import gl.scenegraph.Shape;
 import system.ArActivity;
 import system.DefaultARSetup;
-import system.Setup;
-import util.Log;
 import util.Vec;
-import worldData.Entity;
-import worldData.RenderableEntity;
 import worldData.World;
-
 
 public class MainActivity extends AppCompatActivity {
 
-
-
-
-
+    private String TAG = "MAIN ACTIVITY";
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -60,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
-
-
         b.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -77,15 +59,10 @@ public class MainActivity extends AppCompatActivity {
                         world.setMyScreenPosition(new Vec(0,2,-4));
 
                         world.add(s);
-
-
                     }
                     });
                 }
             });
             setContentView(b);
-
-
-
     }
 }
