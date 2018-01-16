@@ -23,6 +23,7 @@ import gl.scenegraph.Shape;
 import system.ArActivity;
 import system.DefaultARSetup;
 import system.Setup;
+import util.Log;
 import util.Vec;
 import worldData.Entity;
 import worldData.RenderableEntity;
@@ -70,19 +71,14 @@ public class MainActivity extends AppCompatActivity {
                     public void addObjectsTo(GL1Renderer renderer, World world, GLFactory objectFactory) {
                         Color c = new Color("red");
                         Shape s = objectFactory.newPyramid(new Vec(0,0,0), 2, c);
-                        Location l = world.getMyCamera().getGPSLocation();
                         Vec posObjet = s.getPosition();
                         //GLCamera c = new GLCamera();
 
-                        Context context = getApplicationContext();
-                        CharSequence text = "Position de l'objet : " + posObjet.toString();
-                        int duration = Toast.LENGTH_SHORT;
-
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
-
                         world.setMyScreenPosition(new Vec(0,2,-4));
+
                         world.add(s);
+
+
                     }
                     });
                 }
