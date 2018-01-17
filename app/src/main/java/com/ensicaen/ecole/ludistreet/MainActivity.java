@@ -1,5 +1,6 @@
 package com.ensicaen.ecole.ludistreet;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.ensicaen.ecole.ludistreet.RA.RAView;
 import com.ensicaen.ecole.ludistreet.model.WallModel;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ import de.rwth.setups.LargeWorldsSetup;
 import de.rwth.setups.PlaceObjectsSetup;
 import gl.Color;
 import gl.GL1Renderer;
+import gl.GLCamera;
 import gl.GLFactory;
 import gl.scenegraph.MeshComponent;
 import gl.scenegraph.Shape;
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                         5);
             }
         }
-
+        /*
         DefaultARSetup ar2 = new DefaultARSetup() {
             @Override
             public void addObjectsTo(GL1Renderer renderer, World world, GLFactory objectFactory) {
@@ -70,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         ArActivity.startWithSetup(MainActivity.this, ar2);
+        */
 
+
+        WallModel wall = new WallModel(3,10);
+        RAView view = new RAView(wall);
+        DefaultARSetup ar = view.getSetup(new Vec(0,2,-15));
+        ArActivity.startWithSetup(MainActivity.this, ar);
     }
 }
