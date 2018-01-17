@@ -1,5 +1,7 @@
 package com.ensicaen.ecole.ludistreet.rest;
 
+import android.accounts.NetworkErrorException;
+
 import com.ensicaen.ecole.ludistreet.model.LoginModel;
 import com.ensicaen.ecole.ludistreet.model.RegisterModel;
 import com.google.gson.Gson;
@@ -35,6 +37,7 @@ public class LudiStreetRestClient {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 if (statusCode == 200) {
+
                     for(Header header : headers)
                     {
                         if("Authorization".equals(header.getName())){
@@ -47,7 +50,6 @@ public class LudiStreetRestClient {
             @Override
             public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
                 System.out.println(res);
-                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
             }
         });
     }

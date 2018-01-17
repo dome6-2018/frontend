@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         LoginModel loginModel = new LoginModel("thibaudsenalada", "dome6");
-        new LoginTask().execute(loginModel);
+        //new LoginTask().execute(loginModel);
         RegisterModel registerModel = new RegisterModel("JBG@gmail.com","JB", "Gomond", "toto","JBG");
         new RegisterTask().execute(registerModel);
 

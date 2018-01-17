@@ -3,7 +3,6 @@ package com.ensicaen.ecole.ludistreet.RA;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.ensicaen.ecole.ludistreet.MainActivity;
 import com.ensicaen.ecole.ludistreet.R;
 import com.ensicaen.ecole.ludistreet.model.WallModel;
 

@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.ensicaen.ecole.ludistreet.model.LoginModel;
+import com.ensicaen.ecole.ludistreet.task.LoginTask;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -15,20 +19,25 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         final ImageView connectButton = (ImageView) findViewById(R.id.connect_button);
+        final String login = ((EditText) findViewById(R.id.loginEdit)).getText().toString();
+        final String password = ((EditText) findViewById(R.id.passEdit)).getText().toString();
         connectButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                LoginModel loginModel = new LoginModel(login, password);
+                new LoginTask(LogInActivity.this).execute(loginModel);
                 Intent resultIntent = new Intent();
-                resultIntent.putExtra("connected", true);
+                /*resultIntent.putExtra("connected", true);
                 setResult(Activity.RESULT_OK, resultIntent);
-                finish();
+                finish();*/
             }
         });
 
         final ImageView subscribeButton = (ImageView) findViewById(R.id.sub_button);
         subscribeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 Intent intent = new Intent(LogInActivity.this, SubscribeActivity.class);
-                startActivity(intent);
+                LogInActivity.this.startActivity(intent);
             }
         });
     }
