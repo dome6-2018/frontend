@@ -17,6 +17,9 @@ out/
 .gradle/
 build/
 
+.idea/
+droidAR/.idea
+
 # Local configuration file (sdk path, etc)
 local.properties
 

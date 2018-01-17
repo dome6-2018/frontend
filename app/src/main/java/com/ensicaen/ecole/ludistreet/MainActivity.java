@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 import gl.Color;
 import gl.GL1Renderer;
 import gl.GLFactory;
@@ -27,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 5) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // bordel c'est vraiment de la m***** la gestion des droits maintenant
             } else {
             }
         }
@@ -53,12 +54,40 @@ public class MainActivity extends AppCompatActivity {
                     public void addObjectsTo(GL1Renderer renderer, World world, GLFactory objectFactory) {
                         Color c = new Color("red");
                         Shape s = objectFactory.newPyramid(new Vec(0,0,0), 2, c);
+                        Shape s2 = objectFactory.newSquare(c);
+                        ArrayList<Shape> formes = new ArrayList();
+                        formes.add(objectFactory.newSquare(new Color("blue")));
+                        formes.add(objectFactory.newSquare(new Color("green")));
+                        formes.add(objectFactory.newSquare(new Color("yellow")));
+                        formes.add(objectFactory.newSquare(new Color("red")));
+
+                        formes.add(objectFactory.newSquare(new Color("black")));
+                        formes.add(objectFactory.newSquare(new Color("white")));
+                        formes.add(objectFactory.newSquare(new Color("blue")));
+                        formes.add(objectFactory.newSquare(new Color("green")));
+
+                        formes.add(objectFactory.newSquare(new Color("blue")));
+                        formes.add(objectFactory.newSquare(new Color("green")));
+                        formes.add(objectFactory.newSquare(new Color("yellow")));
+                        formes.add(objectFactory.newSquare(new Color("red")));
+
+                        for(int i = 0; i < 4; i++){
+                            formes.get(i).setRotation(new Vec(0,90,0));
+                            formes.get(i).setPosition(new Vec(0,2*i,0));
+                            world.add(formes.get(i));
+                        }
+
+                        for(int i = 4; i < 8; i++){
+                            formes.get(i).setRotation(new Vec(0,90,0));
+                            formes.get(i).setPosition(new Vec(0,2*(i-4),2));
+                            world.add(formes.get(i));
+                        }
+
                         Vec posObjet = s.getPosition();
-                        //GLCamera c = new GLCamera();
 
-                        world.setMyScreenPosition(new Vec(0,2,-4));
-
-                        world.add(s);
+                        world.setMyScreenPosition(new Vec(0,2,-15));
+                        //world.add(s2);
+                        //world.getMyCamera().changeNewPosition(1,1,1);
                     }
                     });
                 }
