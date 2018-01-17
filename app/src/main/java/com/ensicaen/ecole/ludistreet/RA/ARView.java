@@ -22,13 +22,15 @@ import util.Vec;
 import worldData.World;
 
 
-public class RAView {
+public class ARView {
     private WallModel _model;
     private Color _color = new Color("black");
     private DefaultARSetup _setup;
 
-    public RAView(WallModel model){
+    public ARView(WallModel model){
         _model = model;
+
+        initSetup(new Vec(0,2,-50));
     }
 
     public void setColor(Color c) {
@@ -36,7 +38,7 @@ public class RAView {
     }
 
 
-    public DefaultARSetup getSetup(final Vec positionUser) {
+    public void initSetup(final Vec positionUser) {
          _setup = new DefaultARSetup() {
             @Override
             public void addObjectsTo(GL1Renderer renderer, World world, GLFactory objectFactory) {
@@ -46,7 +48,7 @@ public class RAView {
 
                 for (int i = 0; i < x; i++) {
                     for (int j = 0; j < y; j++) {
-                        final Shape square = objectFactory.newSquare(new Color("white"));
+                        final Shape square = objectFactory.newSquare(_model.getPixel(i,j));
                         final int finalI = i;
                         final int finalJ = j;
                         square.setOnClickCommand(new Command() {
@@ -72,7 +74,11 @@ public class RAView {
                 world.setMyScreenPosition(positionUser);
             }
         };
+    }
 
+
+
+    public DefaultARSetup getSetup() {
         return _setup;
     }
 

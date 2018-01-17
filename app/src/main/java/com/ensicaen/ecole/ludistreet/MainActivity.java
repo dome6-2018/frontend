@@ -1,37 +1,18 @@
 package com.ensicaen.ecole.ludistreet;
 
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
-import com.ensicaen.ecole.ludistreet.RA.RAView;
+import com.ensicaen.ecole.ludistreet.RA.ARView;
 import com.ensicaen.ecole.ludistreet.model.WallModel;
 
-import java.util.ArrayList;
-
-import commands.Command;
-import de.rwth.setups.GameDemoSetup;
-import de.rwth.setups.LargeWorldsSetup;
-import de.rwth.setups.PlaceObjectsSetup;
-import gl.Color;
-import gl.GL1Renderer;
-import gl.GLCamera;
-import gl.GLFactory;
-import gl.scenegraph.MeshComponent;
-import gl.scenegraph.Shape;
 import system.ArActivity;
 import system.DefaultARSetup;
-import util.Log;
 import util.Vec;
-import worldData.World;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
         */
 
 
-        WallModel wall = new WallModel(3,10);
-        RAView view = new RAView(wall);
-        DefaultARSetup ar = view.getSetup(new Vec(0,2,-15));
+        WallModel wall = new WallModel(10,10);
+        ARView view = new ARView(wall);
+        DefaultARSetup ar = view.getSetup();
         ArActivity.startWithSetup(MainActivity.this, ar);
     }
 }

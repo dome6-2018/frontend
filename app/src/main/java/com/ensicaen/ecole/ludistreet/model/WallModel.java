@@ -15,6 +15,7 @@ public class WallModel{
         for (int i = 0; i < resX; i++) {
             _wall[i] = new Color[resY];
         }
+        initWall();
     }
 
     public void setColorPixel(int x, int y, Color c){
@@ -34,4 +35,15 @@ public class WallModel{
         return _resY;
     }
 
+    private void initWall() {
+        for (int i = 0; i < _resX; i++) {
+            for (int j = 0 ; j < _resY; j++) {
+                _wall[i][j] = new Color(255, 255, 255, 200);
+            }
+        }
+    }
+
+    private void loadWall() {
+
+    }
 }
