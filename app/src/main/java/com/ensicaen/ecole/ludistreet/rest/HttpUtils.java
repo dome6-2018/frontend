@@ -4,6 +4,13 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.SyncHttpClient;
 
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLDecoder;
+
 import cz.msebera.android.httpclient.entity.StringEntity;
 
 /**
@@ -12,7 +19,7 @@ import cz.msebera.android.httpclient.entity.StringEntity;
  */
 
 public class HttpUtils {
-    private static final String BASE_URL = "https://dome6.ensicaen.fr/";
+    private static final String BASE_URL = "https://dome6.ensicaen.fr/api/v1/";
 
     private static SyncHttpClient client = new SyncHttpClient();
 
@@ -25,8 +32,7 @@ public class HttpUtils {
     }
 
     public static void post(String url, StringEntity entity, AsyncHttpResponseHandler responseHandler){
-        client.post(null, url, entity, "application/json",
-                responseHandler);
+        client.post(null, getAbsoluteUrl(url), entity, "application/json", responseHandler);
     }
 
     public static void getByUrl(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {

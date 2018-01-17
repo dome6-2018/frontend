@@ -1,7 +1,7 @@
 package com.ensicaen.ecole.ludistreet.rest;
 
 import com.ensicaen.ecole.ludistreet.model.LoginModel;
-import com.ensicaen.ecole.ludistreet.model.UserModel;
+import com.ensicaen.ecole.ludistreet.model.RegisterModel;
 import com.google.gson.Gson;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -17,6 +17,7 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class LudiStreetRestClient {
 
+    public static String token = null;
     private String TAG = "LUDISTREET REST CLIENT";
 
     public LudiStreetRestClient(){}
@@ -24,23 +25,23 @@ public class LudiStreetRestClient {
     /**
      * Send login/password
      */
-    public void login(LoginModel loginModel){
+    public void login(LoginModel loginModel) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String loginGson = gson.toJson(loginModel);
 
-        StringEntity entity = null;
-        try {
-           entity = new StringEntity(loginGson);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        StringEntity entity = new StringEntity(loginGson);
 
         HttpUtils.post("login", entity, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 if (statusCode == 200) {
-                    System.out.println(res);
+                    for(Header header : headers)
+                    {
+                        if("Authorization".equals(header.getName())){
+                            token = header.getValue();
+                        }
+                    }
                 }
             }
 
@@ -59,6 +60,7 @@ public class LudiStreetRestClient {
         HttpUtils.post("logout", params, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
+                token = null;
                 System.out.println(res);
             }
 
@@ -69,17 +71,14 @@ public class LudiStreetRestClient {
         });
     }
 
-    public void Register(UserModel user){
+    public void register(RegisterModel user) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String loginGson = gson.toJson(user);
 
         StringEntity entity = null;
-        try {
-            entity = new StringEntity(loginGson);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+
+        entity = new StringEntity(loginGson);
 
         HttpUtils.post("register", entity, new TextHttpResponseHandler() {
             @Override
@@ -91,7 +90,7 @@ public class LudiStreetRestClient {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
-                System.out.println(res);
+                System.out.println("toto" + t.toString());
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
             }
         });
