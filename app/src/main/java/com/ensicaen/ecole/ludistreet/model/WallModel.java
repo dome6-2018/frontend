@@ -3,6 +3,10 @@ package com.ensicaen.ecole.ludistreet.model;
 import java.util.Date;
 import java.util.List;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+
 import gl.Color;
 
 public class WallModel{
@@ -33,11 +37,42 @@ public class WallModel{
     public WallModel(int resX, int resY) {
         _resX = resX;
         _resY = resY;
-        _wall = new Color[resX][];
-        for (int i = 0; i < resX; i++) {
-            _wall[i] = new Color[resY];
+
+        _wall = new Color[_resX][];
+        for (int i = 0; i < _resX; i++) {
+            _wall[i] = new Color[_resY];
         }
-        initWall();
+
+        for (int i = 0; i < _resX; i++) {
+            for (int j = 0 ; j < _resY; j++) {
+                _wall[i][j] = new Color(1.0f, 1.0f, 1.0f, 0.9f);
+            }
+        }
+    }
+
+    public WallModel(int resX, int resY, String json) {
+        _resX = resX;
+        _resY = resY;
+
+        _wall = new Color[_resX][];
+        for (int i = 0; i < _resX; i++) {
+            _wall[i] = new Color[_resY];
+        }
+
+        Gson gson = new Gson();
+        Color[][] dataMap = gson.fromJson(json, Color[][].class);
+        int x = 0;
+        int y;
+        for (Color[] i : dataMap) {
+            y = 0;
+            for (Color j : i) {
+                _wall[x][y] = j;
+                y++;
+            }
+            x++;
+        }
+
+
     }
 
     public void setColorPixel(int x, int y, Color c){
@@ -48,7 +83,6 @@ public class WallModel{
         return _wall[x][y];
     }
 
-
     public int getResX(){
         return _resX;
     }
@@ -57,12 +91,10 @@ public class WallModel{
         return _resY;
     }
 
-    private void initWall() {
-        for (int i = 0; i < _resX; i++) {
-            for (int j = 0 ; j < _resY; j++) {
-                _wall[i][j] = new Color(255, 255, 255, 200);
-            }
-        }
+    public String getJson() {
+        Gson gson = new Gson();
+        String json = gson.toJson(_wall);
+        return json;
     }
 
     private void loadWall() {

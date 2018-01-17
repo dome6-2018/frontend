@@ -24,7 +24,7 @@ import worldData.World;
 
 public class ARView {
     private WallModel _model;
-    private Color _color = new Color("black");
+    private Color _color = new Color(0.0f, 0.0f, 0.0f, 0.8f);
     private DefaultARSetup _setup;
 
     public ARView(WallModel model){
