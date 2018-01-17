@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TestAR</string>
+    <string name="title_activity_log_in">LogInActivity</string>
+    <string name="login_id">IDENTIFIANT</string>
+    <string name="login_pass">MOT DE PASSE</string>
+    <string name="login_confirm_pass">CONFIRMER LE MOT DE PASSE</string>
+    <string name="title_activity_subscribe">SubscribeActivity</string>
+    <string name="name">PRENOM</string>
+    <string name="surname">NOM</string>
+    <string name="email">E-MAIL</string>
 </resources>
