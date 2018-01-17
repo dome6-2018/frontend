@@ -10,26 +10,18 @@ import java.util.List;
  * Model use to defined the user
  */
 public class UserModel {
-    private String name;
-    private String firstName;
     private String email;
-    private int score;
-    private List<String> roles;
+    private String firstname;
+    private String lastname;
+    private String password;
+    private String username;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public UserModel(String email, String firstname, String lastname, String password, String username) {
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.password = password;
+        this.username = username;
     }
 
     public String getEmail() {
@@ -40,19 +32,35 @@ public class UserModel {
         this.email = email;
     }
 
-    public int getScore() {
-        return score;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public List<String> getRoles() {
-        return roles;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
