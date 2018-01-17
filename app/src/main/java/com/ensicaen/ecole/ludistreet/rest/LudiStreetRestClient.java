@@ -17,7 +17,6 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class LudiStreetRestClient {
 
-    public static String token = null;
     private String TAG = "LUDISTREET REST CLIENT";
 
     public LudiStreetRestClient(){}
@@ -39,7 +38,7 @@ public class LudiStreetRestClient {
                     for(Header header : headers)
                     {
                         if("Authorization".equals(header.getName())){
-                            token = header.getValue();
+                            HttpUtils.token = header.getValue();
                         }
                     }
                 }
@@ -60,7 +59,7 @@ public class LudiStreetRestClient {
         HttpUtils.post("logout", params, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
-                token = null;
+                HttpUtils.token = null;
                 System.out.println(res);
             }
 

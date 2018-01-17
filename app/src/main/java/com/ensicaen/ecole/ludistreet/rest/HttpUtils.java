@@ -1,15 +1,7 @@
 package com.ensicaen.ecole.ludistreet.rest;
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.SyncHttpClient;
-
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLDecoder;
 
 import cz.msebera.android.httpclient.entity.StringEntity;
 
@@ -21,25 +13,38 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 public class HttpUtils {
     private static final String BASE_URL = "https://dome6.ensicaen.fr/api/v1/";
 
+    private static String authorizationHeader = "Authorization";
+    public static String token = null;
+
     private static SyncHttpClient client = new SyncHttpClient();
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        if(token != null)
+            client.addHeader(authorizationHeader, token);
         client.get(getAbsoluteUrl(url), params, responseHandler);
     }
 
     public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        if(token != null)
+            client.addHeader(authorizationHeader, token);
         client.post(getAbsoluteUrl(url), params, responseHandler);
     }
 
     public static void post(String url, StringEntity entity, AsyncHttpResponseHandler responseHandler){
+        if(token != null)
+            client.addHeader(authorizationHeader, token);
         client.post(null, getAbsoluteUrl(url), entity, "application/json", responseHandler);
     }
 
     public static void getByUrl(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        if(token != null)
+            client.addHeader(authorizationHeader, token);
         client.get(url, params, responseHandler);
     }
 
     public static void postByUrl(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        if(token != null)
+            client.addHeader(authorizationHeader, token);
         client.post(url, params, responseHandler);
     }
 

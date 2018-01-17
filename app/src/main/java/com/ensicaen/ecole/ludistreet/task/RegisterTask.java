@@ -28,5 +28,4 @@ public class RegisterTask extends AsyncTask<RegisterModel, Void, Boolean> {
     protected void onPostExecute(Boolean result){
 
     }
-
 }
