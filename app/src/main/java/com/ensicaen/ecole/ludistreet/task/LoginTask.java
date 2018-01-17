@@ -18,7 +18,7 @@ public class LoginTask extends AsyncTask<LoginModel, Void , Boolean> {
     protected Boolean doInBackground(LoginModel... loginModels) {
         try{
             LudiStreetRestClient ludiStreetRestClient = new LudiStreetRestClient();
-            ludiStreetRestClient.login(loginModels[0]);
+            ludiStreetRestClient.Login(loginModels[0]);
         } catch (UnsupportedEncodingException e) {
             return false;
         }

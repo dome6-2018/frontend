@@ -12,12 +12,11 @@ import java.io.UnsupportedEncodingException;
  */
 
 public class RegisterTask extends AsyncTask<RegisterModel, Void, Boolean> {
-
     @Override
     protected Boolean doInBackground(RegisterModel... registerModels) {
         try {
             LudiStreetRestClient ludiStreetRestClient = new LudiStreetRestClient();
-            ludiStreetRestClient.register(registerModels[0]);
+            ludiStreetRestClient.Register(registerModels[0]);
         } catch (UnsupportedEncodingException e) {
             return false;
         }

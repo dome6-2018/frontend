@@ -8,4 +8,5 @@
     <string name="name">PRENOM</string>
     <string name="surname">NOM</string>
     <string name="email">E-MAIL</string>
+    <string name="title_activity_nfcreader">NFCReader</string>
 </resources>

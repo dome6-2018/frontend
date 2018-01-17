@@ -22,16 +22,16 @@ public class LudiStreetRestClient {
     public LudiStreetRestClient(){}
 
     /**
-     * Send login/password
+     * Send Login/password
      */
-    public void login(LoginModel loginModel) throws UnsupportedEncodingException {
+    public void Login(LoginModel loginModel) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String loginGson = gson.toJson(loginModel);
 
         StringEntity entity = new StringEntity(loginGson);
 
-        HttpUtils.post("login", entity, new TextHttpResponseHandler() {
+        HttpUtils.post("Login", entity, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 if (statusCode == 200) {
@@ -52,11 +52,11 @@ public class LudiStreetRestClient {
         });
     }
 
-    public void logout(){
+    public void Logout(){
 
         RequestParams params = null;
 
-        HttpUtils.post("logout", params, new TextHttpResponseHandler() {
+        HttpUtils.post("Logout", params, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 HttpUtils.token = null;
@@ -70,7 +70,7 @@ public class LudiStreetRestClient {
         });
     }
 
-    public void register(RegisterModel user) throws UnsupportedEncodingException {
+    public void Register(RegisterModel user) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String loginGson = gson.toJson(user);
@@ -79,7 +79,7 @@ public class LudiStreetRestClient {
 
         entity = new StringEntity(loginGson);
 
-        HttpUtils.post("register", entity, new TextHttpResponseHandler() {
+        HttpUtils.post("Register", entity, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 if (statusCode == 200) {
@@ -96,4 +96,19 @@ public class LudiStreetRestClient {
 
     }
 
+    public void Walls(String uuid){
+        RequestParams params = null;
+
+        HttpUtils.post("walls/"+uuid, params, new TextHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String res) {
+                System.out.println(res);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                System.out.println(res);
+            }
+        });
+    }
 }
