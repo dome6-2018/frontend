@@ -18,6 +18,7 @@ import actions.ActionRotateCameraUnbuffered;
 import actions.ActionRotateCameraUnbuffered2;
 import actions.ActionUseCameraAngles2;
 import commands.Command;
+import commands.ui.CommandShowToast;
 import geo.GeoObj;
 import gl.Color;
 import gl.CustomGLSurfaceView;
@@ -153,6 +154,19 @@ public class WallSetup extends Setup {
 
     @Override
     public void _e2_addElementsToGuiSetup(GuiSetup guiSetup, Activity activity) {
+        guiSetup.setRightViewAllignBottom();
+        guiSetup.addButtonToBottomView(new Command() {
+
+            @Override
+            public boolean execute() {
+                // float[] rayPos = new float[4];
+                // float[] rayDir = new float[4];
+                CommandShowToast.show(getActivity(), "altitude="
+                        + getCamera().getGPSPositionVec().z);
+
+                return true;
+            }
+        }, "Changer la couleur");
     }
 
     private class myRotateAction extends Command {
@@ -171,6 +185,11 @@ public class WallSetup extends Setup {
             return true;
         }
 
+    }
+
+
+    public WallModel getModel() {
+        return _model;
     }
 
 }
