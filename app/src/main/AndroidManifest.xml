@@ -49,6 +49,7 @@
             android:name=".ModeActivity"
             android:label="@string/title_activity_mode"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ArActivity"></activity>
     </application>
 
 </manifest>

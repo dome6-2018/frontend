@@ -1,6 +1,6 @@
 package de.rwth;
 
-import system.ArActivity;
+import system.ArActivity2;
 import system.ErrorHandler;
 import system.EventManager;
 import system.Setup;
@@ -102,7 +102,7 @@ public class TechDemoLauncher extends Activity {
 					@Override
 					public void onButtonPressed() {
 						Activity theCurrentActivity = TechDemoLauncher.this;
-						ArActivity.startWithSetup(theCurrentActivity,
+						ArActivity2.startWithSetup(theCurrentActivity,
 								aSetupInstance);
 					}
 				});
