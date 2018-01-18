@@ -51,14 +51,18 @@ public class WallSetup extends Setup {
     private Action rotActionUnB2;
     private Action rotActionB2;
     private WallModel _model;
-    private Vec _positionUser;
     private Color _color;
 
 
-    public WallSetup(Color col, Vec posUser, WallModel mod) {
-        _positionUser = posUser;
+    public WallSetup(Color col, WallModel mod) {
         _model = mod;
         _color = col;
+    }
+
+
+    @Override
+    public GLCamera getCamera() {
+        return camera;
     }
 
     @Override

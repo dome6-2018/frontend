@@ -1,7 +1,5 @@
 package com.ensicaen.ecole.ludistreet.rest;
 
-import android.accounts.NetworkErrorException;
-
 import com.ensicaen.ecole.ludistreet.model.LoginModel;
 import com.ensicaen.ecole.ludistreet.model.RegisterModel;
 import com.ensicaen.ecole.ludistreet.model.WallModel;
@@ -11,7 +9,6 @@ import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
@@ -41,7 +38,6 @@ public class LudiStreetRestClient {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 if (statusCode == 200) {
-
                     for(Header header : headers)
                     {
                         if("Authorization".equals(header.getName())){
@@ -53,6 +49,7 @@ public class LudiStreetRestClient {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+
                 System.out.println(res);
             }
         });
@@ -117,6 +114,27 @@ public class LudiStreetRestClient {
             @Override
             public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
                 wallModel = null;
+                System.out.println(res);
+            }
+        });
+    }
+
+    public void drawing(String uuid, WallModel wallModel) throws UnsupportedEncodingException {
+
+        Gson gson = new Gson();
+        String wallGson = gson.toJson(wallModel);
+
+        StringEntity entity = new StringEntity(wallGson);
+
+        HttpUtils.patch("walls/" + uuid + "/drawing", entity, new TextHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String res) {
+                System.out.println(res);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable throwable) {
                 System.out.println(res);
             }
         });

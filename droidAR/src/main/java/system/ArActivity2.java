@@ -16,9 +16,9 @@ import android.view.MenuItem;
  * @author Simon Heinen
  * 
  */
-public class ArActivity extends Activity {
+public class ArActivity2 extends Activity {
 
-	private static final String LOG_TAG = "ArActivity";
+	private static final String LOG_TAG = "ArActivity2";
 
 	private static Setup staticSetupHolder;
 
@@ -38,23 +38,23 @@ public class ArActivity extends Activity {
 			runSetup();
 		} else {
 			Log.e(LOG_TAG, "There was no Setup specified to use. "
-					+ "Please use ArActivity.show(..) when you "
+					+ "Please use ArActivity2.show(..) when you "
 					+ "want to use this way of starting the AR-view!");
 			this.finish();
 		}
 	}
 
 	public static void startWithSetup(Activity currentActivity, Setup setupToUse) {
-		ArActivity.staticSetupHolder = setupToUse;
+		ArActivity2.staticSetupHolder = setupToUse;
 		currentActivity.startActivity(new Intent(currentActivity,
-				ArActivity.class));
+				ArActivity2.class));
 	}
 
 	public static void startWithSetupForResult(Activity currentActivity,
 			Setup setupToUse, int requestCode) {
-		ArActivity.staticSetupHolder = setupToUse;
+		ArActivity2.staticSetupHolder = setupToUse;
 		currentActivity.startActivityForResult(new Intent(currentActivity,
-				ArActivity.class), requestCode);
+				ArActivity2.class), requestCode);
 	}
 
 	private void runSetup() {

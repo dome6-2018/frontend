@@ -22,7 +22,7 @@
         -->
 
         <activity
-            android:name="system.ArActivity"
+            android:name="system.ArActivity2"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >

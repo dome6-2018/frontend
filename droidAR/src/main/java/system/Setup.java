@@ -93,6 +93,12 @@ public abstract class Setup {
 	private static final String STEP13 = "Entering fullscreen mode";
 	private static final String STEP_DONE = "All Setup-steps done!";
 
+
+	public GLCamera getCamera() {
+		return null;
+	}
+
+
 	/**
 	 * use {@link Setup#getActivity()} instead
 	 * 
