@@ -7,11 +7,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.ensicaen.ecole.ludistreet.model.User;
+import com.ensicaen.ecole.ludistreet.rest.MeRestClient;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private int id;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,10 @@ public class ProfileActivity extends AppCompatActivity {
                 final String email = ((EditText) findViewById(R.id.textView_mail)).getText().toString();
                 final int score = Integer.parseInt(((EditText) findViewById(R.id.textView_point)).getText().toString());
 
-                User model = new User(id, username, surname, name, email, score);
+                User user = new User(id, username, surname, name, email, score);
+
+                MeRestClient meRestClient = new MeRestClient(ProfileActivity.this);
+                meRestClient.patchMe(user);
             }
         });
     }
