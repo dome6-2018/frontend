@@ -25,16 +25,16 @@ public class LudiStreetRestClient {
     public LudiStreetRestClient(){}
 
     /**
-     * Send login/password
+     * Send postLogin/password
      */
-    public void login(LoginModel loginModel) throws UnsupportedEncodingException {
+    public void postLogin(LoginModel loginModel) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String loginGson = gson.toJson(loginModel);
 
         StringEntity entity = new StringEntity(loginGson);
 
-        HttpUtils.post("login", entity, new TextHttpResponseHandler() {
+        HttpUtils.post("postLogin", entity, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 if (statusCode == 200) {
@@ -55,11 +55,11 @@ public class LudiStreetRestClient {
         });
     }
 
-    public void logout(){
+    public void postLogout(){
 
         RequestParams params = null;
 
-        HttpUtils.post("logout", params, new TextHttpResponseHandler() {
+        HttpUtils.post("postLogout", params, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 HttpUtils.token = null;
@@ -73,7 +73,7 @@ public class LudiStreetRestClient {
         });
     }
 
-    public void register(RegisterModel user) throws UnsupportedEncodingException {
+    public void postRegister(RegisterModel user) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String loginGson = gson.toJson(user);
@@ -82,7 +82,7 @@ public class LudiStreetRestClient {
 
         entity = new StringEntity(loginGson);
 
-        HttpUtils.post("register", entity, new TextHttpResponseHandler() {
+        HttpUtils.post("postRegister", entity, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 if (statusCode == 200) {
@@ -100,11 +100,11 @@ public class LudiStreetRestClient {
 
     }
 
-    public void walls(String uuid){
+    public void getWalls(String uuid){
         RequestParams params = null;
         final Gson gson = new Gson();
 
-        HttpUtils.get("walls/"+uuid, params, new TextHttpResponseHandler() {
+        HttpUtils.get("getWalls/"+uuid, params, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 wallModel = gson.fromJson(res, new TypeToken<WallModel>(){}.getType());
@@ -119,14 +119,14 @@ public class LudiStreetRestClient {
         });
     }
 
-    public void drawing(String uuid, WallModel wallModel) throws UnsupportedEncodingException {
+    public void patchDrawing(String uuid, WallModel wallModel) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String wallGson = gson.toJson(wallModel);
 
         StringEntity entity = new StringEntity(wallGson);
 
-        HttpUtils.patch("walls/" + uuid + "/drawing", entity, new TextHttpResponseHandler() {
+        HttpUtils.patch("getWalls/" + uuid + "/patchDrawing", entity, new TextHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
@@ -138,5 +138,9 @@ public class LudiStreetRestClient {
                 System.out.println(res);
             }
         });
+    }
+
+    public void getMe(){
+        
     }
 }

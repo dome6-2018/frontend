@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.ensicaen.ecole.ludistreet.ModeActivity;
-import com.ensicaen.ecole.ludistreet.SelectWallActivity;
 import com.ensicaen.ecole.ludistreet.rest.LudiStreetRestClient;
 
 /**
@@ -22,7 +21,7 @@ public class WallsTask extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... strings) {
         LudiStreetRestClient ludiStreetRestClient = new LudiStreetRestClient();
-        ludiStreetRestClient.walls(strings[0]);
+        ludiStreetRestClient.getWalls(strings[0]);
         return null;
     }
 

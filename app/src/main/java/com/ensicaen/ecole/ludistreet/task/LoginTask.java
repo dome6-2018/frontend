@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.ensicaen.ecole.ludistreet.ModeActivity;
-import com.ensicaen.ecole.ludistreet.RA.ARView;
 import com.ensicaen.ecole.ludistreet.SelectWallActivity;
 import com.ensicaen.ecole.ludistreet.model.LoginModel;
-import com.ensicaen.ecole.ludistreet.model.WallModel;
 import com.ensicaen.ecole.ludistreet.rest.LudiStreetRestClient;
 
 import java.io.UnsupportedEncodingException;
@@ -31,7 +28,7 @@ public class LoginTask extends AsyncTask<LoginModel, Void , Boolean> {
     protected Boolean doInBackground(LoginModel... loginModels) {
         try{
             LudiStreetRestClient ludiStreetRestClient = new LudiStreetRestClient();
-            ludiStreetRestClient.login(loginModels[0]);
+            ludiStreetRestClient.postLogin(loginModels[0]);
         } catch (UnsupportedEncodingException e) {
             return false;
         }
