@@ -30,7 +30,7 @@ public class RegisterTask extends AsyncTask<RegisterModel, Void, Boolean> {
     protected Boolean doInBackground(RegisterModel... registerModels) {
         try {
             LudiStreetRestClient ludiStreetRestClient = new LudiStreetRestClient();
-            ludiStreetRestClient.Register(registerModels[0]);
+            ludiStreetRestClient.register(registerModels[0]);
         } catch (UnsupportedEncodingException e) {
             return false;
         }
@@ -42,8 +42,7 @@ public class RegisterTask extends AsyncTask<RegisterModel, Void, Boolean> {
         if(result) {
             WallModel w = new WallModel(2,2);
             ARView arv = new ARView(w);
-            DefaultARSetup ar = arv.getSetup();
-            ArActivity.startWithSetup(_activity, ar);
+            ArActivity.startWithSetup(_activity, arv.getSetup());
             return;
         }
         Toast.makeText(_activity, "Erreur lors de la connexion",

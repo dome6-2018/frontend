@@ -1,9 +1,5 @@
 package com.ensicaen.ecole.ludistreet.RA;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
-import com.ensicaen.ecole.ludistreet.R;
 import com.ensicaen.ecole.ludistreet.model.WallModel;
 
 import java.util.ArrayList;
@@ -12,11 +8,8 @@ import commands.Command;
 import gl.Color;
 import gl.GL1Renderer;
 import gl.GLFactory;
-import gl.scenegraph.MeshComponent;
 import gl.scenegraph.Shape;
-import system.ArActivity;
 import system.DefaultARSetup;
-import util.Log;
 import util.Vec;
 import worldData.World;
 
@@ -25,11 +18,15 @@ public class ARView {
     private WallModel _model;
     private Color _color = new Color(0.0f, 0.0f, 0.0f, 0.8f);
     private DefaultARSetup _setup;
+    private WallSetup _set;
 
     public ARView(WallModel model){
         _model = model;
 
-        initSetup(new Vec(0,2,-50));
+        _set = new WallSetup(_color, new Vec(0,2,-50), model);
+
+
+        //initSetup(new Vec(0,2,-50));
     }
 
     public void setColor(Color c) {
@@ -77,8 +74,8 @@ public class ARView {
 
 
 
-    public DefaultARSetup getSetup() {
-        return _setup;
+    public WallSetup getSetup() {
+        return _set;
     }
 
 }

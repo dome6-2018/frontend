@@ -3,8 +3,6 @@ package com.ensicaen.ecole.ludistreet.model;
 import java.util.Date;
 import java.util.List;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 
 import gl.Color;
@@ -14,91 +12,50 @@ public class WallModel{
     private String code;
     private String name;
 
-    private int _resX;
-    private int _resY;
-    private Color[][] _wall;
-
+    private int resX;
+    private int resY;
+    private Color[][] drawing;
+    private double latitude;
+    private double longitude;
     private List<BeaconModel> beacons;
-
     private Date createdAt;
     private Date updatedAt;
 
-    public WallModel(String code, String name, int _resX, int _resY, Color[][] _wall, List<BeaconModel> beacons, Date createdAt, Date updatedAt) {
-        this.code = code;
-        this.name = name;
-        this._resX = _resX;
-        this._resY = _resY;
-        this._wall = _wall;
-        this.beacons = beacons;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
 
     public WallModel(int resX, int resY) {
-        _resX = resX;
-        _resY = resY;
+        this.resX = resX;
+        this.resY = resY;
 
-        _wall = new Color[_resX][];
-        for (int i = 0; i < _resX; i++) {
-            _wall[i] = new Color[_resY];
+        drawing = new Color[this.resX][];
+        for (int i = 0; i < this.resX; i++) {
+            drawing[i] = new Color[this.resY];
         }
 
-        for (int i = 0; i < _resX; i++) {
-            for (int j = 0 ; j < _resY; j++) {
-                _wall[i][j] = new Color(1.0f, 1.0f, 1.0f, 0.9f);
+        for (int i = 0; i < this.resX; i++) {
+            for (int j = 0; j < this.resY; j++) {
+                drawing[i][j] = new Color(1.0f, 1.0f, 1.0f, 0.9f);
             }
         }
     }
 
-    public WallModel(int resX, int resY, String json) {
-        _resX = resX;
-        _resY = resY;
-
-        _wall = new Color[_resX][];
-        for (int i = 0; i < _resX; i++) {
-            _wall[i] = new Color[_resY];
-        }
-
-        Gson gson = new Gson();
-        Color[][] dataMap = gson.fromJson(json, Color[][].class);
-        int x = 0;
-        int y;
-        for (Color[] i : dataMap) {
-            y = 0;
-            for (Color j : i) {
-                _wall[x][y] = j;
-                y++;
-            }
-            x++;
-        }
-
-
-    }
 
     public void setColorPixel(int x, int y, Color c){
-        _wall[x][y] = c;
+        drawing[x][y] = c;
     }
 
     public Color getPixel(int x, int y){
-        return _wall[x][y];
+        return drawing[x][y];
     }
 
+
+
+
     public int getResX(){
-        return _resX;
+        return resX;
     }
 
     public int getResY(){
-        return _resY;
-    }
-
-    public String getJson() {
-        Gson gson = new Gson();
-        String json = gson.toJson(_wall);
-        return json;
-    }
-
-    private void loadWall() {
-
+        return resY;
     }
 
     public String getCode() {
@@ -117,12 +74,12 @@ public class WallModel{
         this.name = name;
     }
 
-    public Color[][] get_wall() {
-        return _wall;
+    public Color[][] getDrawing() {
+        return drawing;
     }
 
-    public void set_wall(Color[][] _wall) {
-        this._wall = _wall;
+    public void setDrawing(Color[][] drawing) {
+        this.drawing = drawing;
     }
 
     public List<BeaconModel> getBeacons() {
@@ -147,5 +104,21 @@ public class WallModel{
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

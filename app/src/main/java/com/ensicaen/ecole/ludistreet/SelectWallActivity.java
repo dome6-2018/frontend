@@ -15,6 +15,8 @@ import android.nfc.tech.NfcV;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.ensicaen.ecole.ludistreet.model.LoginModel;
+import com.ensicaen.ecole.ludistreet.task.LoginTask;
 import com.ensicaen.ecole.ludistreet.task.WallsTask;
 
 public class SelectWallActivity extends Activity {
@@ -65,6 +67,9 @@ public class SelectWallActivity extends Activity {
     @Override
     protected void onNewIntent(Intent intent) {
         if (intent.getAction().equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
+            ((TextView)findViewById(R.id.text)).setText(
+                    "NFC Tag\n" +
+                            ByteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID)));
             new WallsTask().execute(ByteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID)));
         }
     }
