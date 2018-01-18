@@ -4,7 +4,9 @@ import android.app.Activity;
 
 import com.ensicaen.ecole.ludistreet.model.TicTacToeModel;
 import com.ensicaen.ecole.ludistreet.model.WallModel;
+import com.ensicaen.ecole.ludistreet.rest.LudiStreetRestClient;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import actions.Action;
@@ -19,18 +21,15 @@ import actions.ActionRotateCameraUnbuffered;
 import actions.ActionRotateCameraUnbuffered2;
 import actions.ActionUseCameraAngles2;
 import commands.Command;
-import de.rwth.setups.SensorTestSetup;
 import geo.GeoObj;
 import gl.Color;
 import gl.CustomGLSurfaceView;
 import gl.GL1Renderer;
 import gl.GLCamera;
 import gl.GLFactory;
-import gl.animations.AnimationRotate;
 import gl.scenegraph.MeshComponent;
 import gl.scenegraph.Shape;
 import gui.GuiSetup;
-import system.ErrorHandler;
 import system.EventManager;
 import system.Setup;
 import util.Vec;
@@ -100,16 +99,14 @@ public class WallSetup extends Setup {
                         public boolean execute() {
                             square.setColor(_color);
                             _model.setColorPixel(finalI, finalJ, _color);
-                            return true;
-                        }
-                    });
-                }
-                if (_model instanceof TicTacToeModel) {
-                    square.setOnClickCommand(new Command() {
-                        @Override
-                        public boolean execute() {
-                            square.setColor(_color);
-                            _model.setColorPixel(finalI, finalJ, _color);
+
+                            LudiStreetRestClient ls = new LudiStreetRestClient();
+                            try {
+                                ls.drawing(_model.getCode(), _model);
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+
                             return true;
                         }
                     });

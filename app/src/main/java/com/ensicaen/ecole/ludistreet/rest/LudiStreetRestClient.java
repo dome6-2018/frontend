@@ -25,9 +25,9 @@ public class LudiStreetRestClient {
     public LudiStreetRestClient(){}
 
     /**
-     * Send login/password
+     * Send postLogin/password
      */
-    public void login(LoginModel loginModel) throws UnsupportedEncodingException {
+    public void postLogin(LoginModel loginModel) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String loginGson = gson.toJson(loginModel);
@@ -55,7 +55,7 @@ public class LudiStreetRestClient {
         });
     }
 
-    public void logout(){
+    public void postLogout(){
 
         RequestParams params = null;
 
@@ -73,7 +73,7 @@ public class LudiStreetRestClient {
         });
     }
 
-    public void register(RegisterModel user) throws UnsupportedEncodingException {
+    public void postRegister(RegisterModel user) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String loginGson = gson.toJson(user);
@@ -100,7 +100,7 @@ public class LudiStreetRestClient {
 
     }
 
-    public void walls(String uuid){
+    public void getWalls(String uuid){
         RequestParams params = null;
         final Gson gson = new Gson();
 
@@ -119,7 +119,7 @@ public class LudiStreetRestClient {
         });
     }
 
-    public void drawing(String uuid, WallModel wallModel) throws UnsupportedEncodingException {
+    public void patchDrawing(String uuid, WallModel wallModel) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String wallGson = gson.toJson(wallModel);
@@ -135,6 +135,25 @@ public class LudiStreetRestClient {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String res, Throwable throwable) {
+                System.out.println(res);
+            }
+        });
+    }
+
+    public void getMe(){
+
+        RequestParams params = null;
+        final Gson gson = new Gson();
+
+        HttpUtils.get("me/", params, new TextHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String res) {
+                
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                wallModel = null;
                 System.out.println(res);
             }
         });

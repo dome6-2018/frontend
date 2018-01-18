@@ -32,7 +32,7 @@ public class LoginTask extends AsyncTask<LoginModel, Void , Boolean> {
     protected Boolean doInBackground(LoginModel... loginModels) {
         try{
             LudiStreetRestClient ludiStreetRestClient = new LudiStreetRestClient();
-            ludiStreetRestClient.login(loginModels[0]);
+            ludiStreetRestClient.postLogin(loginModels[0]);
         } catch (UnsupportedEncodingException e) {
             return false;
         }
@@ -43,8 +43,11 @@ public class LoginTask extends AsyncTask<LoginModel, Void , Boolean> {
     protected void onPostExecute(Boolean result){
         if(result) {
 
-            Intent intent = new Intent(_activity, ChoiceActivity.class);
+            Intent intent = new Intent(_activity, SelectWallActivity.class);
             _activity.startActivity(intent);
+            // WallModel w = new WallModel(2,2);
+            // ARView arv = new ARView(w);
+            // ArActivity.startWithSetup(_activity, arv.getSetup());
             return;
         }
         Toast.makeText(_activity, "Erreur lors de la connexion",
