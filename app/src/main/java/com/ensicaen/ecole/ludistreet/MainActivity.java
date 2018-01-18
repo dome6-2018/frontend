@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
         LoginModel loginModel = new LoginModel("thibaudsenalada", "dome6");
         //new LoginTask().execute(loginModel);
-        RegisterModel registerModel = new RegisterModel("JBG@gmail.com","JB", "Gomond", "toto","JBG");
-        new RegisterTask().execute(registerModel);
+        //RegisterModel registerModel = new RegisterModel("JBG@gmail.com","JB", "Gomond", "toto","JBG");
+        //new RegisterTask().execute(registerModel);
 
         Button b = new Button(this);
 

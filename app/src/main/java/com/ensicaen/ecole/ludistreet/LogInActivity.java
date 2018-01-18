@@ -17,18 +17,14 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         final ImageView connectButton = (ImageView) findViewById(R.id.connect_button);
-        final String login = ((EditText) findViewById(R.id.loginEdit)).getText().toString();
-        final String password = ((EditText) findViewById(R.id.passEdit)).getText().toString();
+
         connectButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                final String login = ((EditText) findViewById(R.id.loginEdit)).getText().toString();
+                final String password = ((EditText) findViewById(R.id.passEdit)).getText().toString();
                 LoginModel loginModel = new LoginModel(login, password);
                 new LoginTask(LogInActivity.this).execute(loginModel);
-                Intent resultIntent = new Intent();
-                /*resultIntent.putExtra("connected", true);
-                setResult(Activity.RESULT_OK, resultIntent);
-                finish();*/
             }
         });
 
