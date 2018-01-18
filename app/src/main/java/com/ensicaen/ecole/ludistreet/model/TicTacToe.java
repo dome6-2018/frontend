@@ -6,9 +6,9 @@ import gl.Color;
  * Created by jorand on 18/01/2018.
  */
 
-public class TicTacToeModel extends WallModel {
+public class TicTacToe extends Wall {
 
-    public TicTacToeModel() {
+    public TicTacToe() {
         super(11, 11);
 
         this.setLocked(true);

@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 
 import com.ensicaen.ecole.ludistreet.R;
-import com.ensicaen.ecole.ludistreet.rest.LudiStreetRestClient;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -25,15 +24,12 @@ import java.util.Collection;
 public class RangingActivity extends AppCompatActivity implements BeaconConsumer, RangeNotifier {
 
     private BeaconManager mBeaconManager;
-    private Context context;
     private EditText editText;
-    private LudiStreetRestClient ludiStreetRestClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranging);
-        context = this;
         editText = (EditText) RangingActivity.this.findViewById(R.id.rangingText);
         editText.setEnabled(false);
     }

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    compileOptions.encoding = "UTF-8"
+    compileOptions.encoding = "ISO-8859-1"
     defaultConfig {
         applicationId "com.example.bryan.testar"
         minSdkVersion 22
@@ -37,4 +37,5 @@ dependencies {
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.estimote:sdk:1.4.1'
     compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.google.android.gms:play-services-maps:11.8.0'
 }

@@ -3,13 +3,11 @@ package com.ensicaen.ecole.ludistreet.model;
 import java.util.Date;
 import java.util.List;
 
-import com.google.gson.Gson;
-
 import gl.Color;
 
-public class WallModel{
+public class Wall {
 
-    private String code;
+    private String uuid;
     private String name;
 
     private int resX;
@@ -17,12 +15,12 @@ public class WallModel{
     private Color[][] drawing;
     private double latitude;
     private double longitude;
-    private List<BeaconModel> beacons;
+    private List<Beacon> beacons;
     private Date createdAt;
     private Date updatedAt;
     private boolean locked;
 
-    public WallModel(int resX, int resY) {
+    public Wall(int resX, int resY) {
         this.locked = false;
         this.resX = resX;
         this.resY = resY;
@@ -48,23 +46,12 @@ public class WallModel{
         return drawing[x][y];
     }
 
-
-
-
-    public int getResX(){
-        return resX;
+    public String getUuid() {
+        return uuid;
     }
 
-    public int getResY(){
-        return resY;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getName() {
@@ -75,6 +62,22 @@ public class WallModel{
         this.name = name;
     }
 
+    public int getResX() {
+        return resX;
+    }
+
+    public void setResX(int resX) {
+        this.resX = resX;
+    }
+
+    public int getResY() {
+        return resY;
+    }
+
+    public void setResY(int resY) {
+        this.resY = resY;
+    }
+
     public Color[][] getDrawing() {
         return drawing;
     }
@@ -83,11 +86,27 @@ public class WallModel{
         this.drawing = drawing;
     }
 
-    public List<BeaconModel> getBeacons() {
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public List<Beacon> getBeacons() {
         return beacons;
     }
 
-    public void setBeacons(List<BeaconModel> beacons) {
+    public void setBeacons(List<Beacon> beacons) {
         this.beacons = beacons;
     }
 
@@ -105,22 +124,6 @@ public class WallModel{
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
     }
 
     public boolean isLocked() {

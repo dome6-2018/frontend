@@ -42,7 +42,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SubscribeActivity"
+            android:name=".RegisterActivity"
             android:label="@string/title_activity_subscribe"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -69,6 +69,15 @@
             android:label="@string/title_activity_choice"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".SearchWallActivity"
+            android:label="@string/title_activity_nfcreader"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCcyjEFTsmBl2q01V_iTjel5a8yKdM6vbY"/>
     </application>
 
 </manifest>

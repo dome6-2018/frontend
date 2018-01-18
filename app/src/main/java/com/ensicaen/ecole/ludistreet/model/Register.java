@@ -9,14 +9,14 @@ import java.util.List;
 /**
  * Model use to defined the user
  */
-public class RegisterModel {
+public class Register {
     private String email;
     private String firstname;
     private String lastname;
     private String password;
     private String username;
 
-    public RegisterModel(String email, String firstname, String lastname, String password, String username) {
+    public Register(String email, String firstname, String lastname, String password, String username) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;

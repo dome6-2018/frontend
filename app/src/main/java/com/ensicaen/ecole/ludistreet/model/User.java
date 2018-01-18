@@ -4,7 +4,7 @@ package com.ensicaen.ecole.ludistreet.model;
  * Created by Thibaud on 18/01/2018.
  */
 
-public class UserModel {
+public class User {
 
     private int id;
 
@@ -18,7 +18,7 @@ public class UserModel {
 
     private int point;
 
-    public UserModel(int id, String username, String firstname, String lastname, String email, int point) {
+    public User(int id, String username, String firstname, String lastname, String email, int point) {
         this.id = id;
         this.username = username;
         this.firstname = firstname;

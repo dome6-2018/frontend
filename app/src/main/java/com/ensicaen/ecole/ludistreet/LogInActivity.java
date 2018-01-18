@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.ensicaen.ecole.ludistreet.model.LoginModel;
-import com.ensicaen.ecole.ludistreet.rest.HttpUtils;
-import com.ensicaen.ecole.ludistreet.task.LoginTask;
+import com.ensicaen.ecole.ludistreet.model.Login;
+import com.ensicaen.ecole.ludistreet.rest.HttpClient;
+import com.ensicaen.ecole.ludistreet.rest.SecurityRestClient;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -23,16 +23,18 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String login = ((EditText) findViewById(R.id.loginEdit)).getText().toString();
                 final String password = ((EditText) findViewById(R.id.passEdit)).getText().toString();
-                LoginModel loginModel = new LoginModel(login, password);
-                new LoginTask(LogInActivity.this).execute(loginModel);
+                Login loginModel = new Login(login, password);
+
+                // Envoie des donnees au serveur
+                SecurityRestClient securityRestClient = new SecurityRestClient(LogInActivity.this);
+                securityRestClient.postLogin(loginModel);
             }
         });
 
         final ImageView subscribeButton = (ImageView) findViewById(R.id.sub_button);
         subscribeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                Intent intent = new Intent(LogInActivity.this, SubscribeActivity.class);
+                Intent intent = new Intent(LogInActivity.this, RegisterActivity.class);
                 LogInActivity.this.startActivity(intent);
                 LogInActivity.this.finish();
             }
@@ -42,7 +44,7 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        if(HttpUtils.token != null){
+        if (HttpClient.token != null){
             Intent intent = new Intent(this, StartActivity.class);
             this.startActivity(intent);
         }

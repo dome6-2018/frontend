@@ -19,9 +19,15 @@ public class ChoiceActivity extends AppCompatActivity {
         ImageView where = (ImageView)findViewById(R.id.where_to_go);
         ImageView here = (ImageView)findViewById(R.id.i_am_here);
 
+        where.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ChoiceActivity.this, SearchWallActivity.class);
+                ChoiceActivity.this.startActivity(intent);
+            }
+        });
+
         here.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 Intent intent = new Intent(ChoiceActivity.this, SelectWallActivity.class);
                 ChoiceActivity.this.startActivity(intent);
             }

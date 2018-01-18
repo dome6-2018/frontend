@@ -7,13 +7,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.ensicaen.ecole.ludistreet.R;
-import com.ensicaen.ecole.ludistreet.model.LoginModel;
-import com.ensicaen.ecole.ludistreet.model.RegisterModel;
-import com.ensicaen.ecole.ludistreet.task.LoginTask;
-import com.ensicaen.ecole.ludistreet.task.RegisterTask;
+import com.ensicaen.ecole.ludistreet.model.Register;
+import com.ensicaen.ecole.ludistreet.rest.SecurityRestClient;
 
-public class SubscribeActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +29,12 @@ public class SubscribeActivity extends AppCompatActivity {
                 final String email = ((EditText) findViewById(R.id.sub_email)).getText().toString();
 
                 if (password.equals(passwordConfirm)) {
-                    RegisterModel registerModel = new RegisterModel(email, name, surname, password, login);
-                    new RegisterTask(SubscribeActivity.this).execute(registerModel);
+                    Register register = new Register(email, name, surname, password, login);
+
+                    SecurityRestClient securityRestClient = new SecurityRestClient(RegisterActivity.this);
+                    securityRestClient.postRegister(register);
                 } else {
-                    Toast.makeText(SubscribeActivity.this, "Les mots de passe sont differents !", Toast.LENGTH_LONG);
+                    Toast.makeText(RegisterActivity.this, "Les mots de passe sont differents !", Toast.LENGTH_LONG);
                 }
             }
         });

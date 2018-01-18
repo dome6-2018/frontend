@@ -2,15 +2,12 @@ package com.ensicaen.ecole.ludistreet.RA;
 
 import android.app.Activity;
 
-import com.ensicaen.ecole.ludistreet.model.TicTacToeModel;
-import com.ensicaen.ecole.ludistreet.model.WallModel;
-import com.ensicaen.ecole.ludistreet.rest.LudiStreetRestClient;
+import com.ensicaen.ecole.ludistreet.model.Wall;
+import com.ensicaen.ecole.ludistreet.rest.WallsRestClient;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 
 import actions.Action;
-import actions.ActionBufferedCameraAR;
 import actions.ActionMoveCameraBuffered;
 import actions.ActionRotateCameraBuffered;
 import actions.ActionRotateCameraBuffered3;
@@ -50,11 +47,11 @@ public class WallSetup extends Setup {
     private Action rotActionUnB;
     private Action rotActionUnB2;
     private Action rotActionB2;
-    private WallModel _model;
+    private Wall _model;
     private Color _color;
 
 
-    public WallSetup(Color col, WallModel mod) {
+    public WallSetup(Color col, Wall mod) {
         _model = mod;
         _color = col;
     }
@@ -100,12 +97,8 @@ public class WallSetup extends Setup {
                             square.setColor(_color);
                             _model.setColorPixel(finalI, finalJ, _color);
 
-                            LudiStreetRestClient ls = new LudiStreetRestClient();
-                            try {
-                                ls.patchDrawing(_model.getCode(), _model);
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                            }
+                            WallsRestClient wallsRestClient = new WallsRestClient(null);
+                            wallsRestClient.patchWallDrawing(_model.getUuid(), _model);
 
                             return true;
                         }

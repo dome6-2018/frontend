@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Thibaud on 16/01/2018.
  */
 
-public class BeaconModel {
+public class Beacon {
 
     private String uuid;
     private Date addedAt;
@@ -14,7 +14,7 @@ public class BeaconModel {
     private int minor;
     private int major;
 
-    public BeaconModel(String UUID, Date addedAt, Date updatedAt) {
+    public Beacon(String UUID, Date addedAt, Date updatedAt) {
         this.uuid = UUID;
         this.addedAt = addedAt;
         this.updatedAt = updatedAt;

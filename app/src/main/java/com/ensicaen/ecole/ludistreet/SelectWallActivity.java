@@ -1,4 +1,5 @@
 package com.ensicaen.ecole.ludistreet;
+
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -14,7 +15,7 @@ import android.nfc.tech.NfcF;
 import android.nfc.tech.NfcV;
 import android.os.Bundle;
 
-import com.ensicaen.ecole.ludistreet.task.WallsTask;
+import com.ensicaen.ecole.ludistreet.rest.WallsRestClient;
 
 public class SelectWallActivity extends Activity {
 
@@ -64,7 +65,10 @@ public class SelectWallActivity extends Activity {
     @Override
     protected void onNewIntent(Intent intent) {
         if (intent.getAction().equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
-            new WallsTask(this).execute(ByteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID)));
+            String wallUuid = ByteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID));
+
+            WallsRestClient wallsRestClient = new WallsRestClient(SelectWallActivity.this);
+            wallsRestClient.getWall(wallUuid);
         }
     }
 

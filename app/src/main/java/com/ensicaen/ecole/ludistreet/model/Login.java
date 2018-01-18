@@ -4,11 +4,11 @@ package com.ensicaen.ecole.ludistreet.model;
  * Created by Thibaud on 17/01/2018.
  */
 
-public class LoginModel {
+public class Login {
     private String username;
     private String password;
 
-    public LoginModel(String username, String password) {
+    public Login(String username, String password) {
         this.username = username;
         this.password = password;
     }
