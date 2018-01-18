@@ -37,7 +37,7 @@ public class SelectWallActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nfcreader);
+        setContentView(R.layout.activity_nfctag);
     }
 
 
@@ -67,10 +67,10 @@ public class SelectWallActivity extends Activity {
     @Override
     protected void onNewIntent(Intent intent) {
         if (intent.getAction().equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
-            ((TextView)findViewById(R.id.text)).setText(
-                    "NFC Tag\n" +
-                            ByteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID)));
-            new WallsTask().execute(ByteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID)));
+//            ((TextView)findViewById(R.id.text)).setText(
+//                    "NFC Tag\n" +
+//                            ByteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID)));
+            new WallsTask(this).execute(ByteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID)));
         }
     }
 
