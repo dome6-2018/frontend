@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import com.ensicaen.ecole.ludistreet.RA.ARView;
 import com.ensicaen.ecole.ludistreet.model.WallModel;
 
-import system.ArActivity;
 
 public class ModeActivity extends AppCompatActivity {
 

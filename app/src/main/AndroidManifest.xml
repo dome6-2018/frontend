@@ -25,31 +25,38 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".StartActivity">
+        <activity
+            android:name=".StartActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".beacon.RangingActivity" />
+        <activity
+            android:name=".beacon.RangingActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LogInActivity"
             android:label="@string/title_activity_log_in"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SubscribeActivity"
             android:label="@string/title_activity_subscribe"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SelectWallActivity"
             android:label="@string/title_activity_nfcreader"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ModeActivity"
             android:label="@string/title_activity_mode"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ArActivity"></activity>
+        <activity android:name=".ArActivity" />
     </application>
 
 </manifest>

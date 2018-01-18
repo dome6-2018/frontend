@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toolbar;
 
 import com.ensicaen.ecole.ludistreet.beacon.ThreadBeacon;
 
@@ -32,6 +35,16 @@ public class ArActivity extends Activity {
             mySetupToUse = staticSetupHolder;
             staticSetupHolder = null;
             runSetup();
+
+            Toolbar toolbar = new Toolbar(this);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, 168);
+            toolbar.setLayoutParams(layoutParams);
+            toolbar.setPopupTheme(R.style.AppTheme);
+            toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            toolbar.setTitle("This is the title");
+            toolbar.setVisibility(View.VISIBLE);
+
         } else {
             Log.e(LOG_TAG, "There was no Setup specified to use. "
                     + "Please use ArActivity.show(..) when you "

@@ -85,7 +85,6 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/log_in_help_button" />
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
