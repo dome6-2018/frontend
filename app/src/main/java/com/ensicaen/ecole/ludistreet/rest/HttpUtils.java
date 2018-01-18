@@ -39,13 +39,25 @@ public class HttpUtils {
     public static void getByUrl(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
         if(token != null)
             client.addHeader(authorizationHeader, token);
-        client.get(url, params, responseHandler);
+        client.get(getAbsoluteUrl(url), params, responseHandler);
     }
 
     public static void postByUrl(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
         if(token != null)
             client.addHeader(authorizationHeader, token);
-        client.post(url, params, responseHandler);
+        client.post(getAbsoluteUrl(url), params, responseHandler);
+    }
+
+    public static void patch(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
+        if(token != null)
+            client.addHeader(authorizationHeader, token);
+        client.patch(getAbsoluteUrl(url), params, responseHandler);
+    }
+
+    public static void patch(String url, StringEntity entity, AsyncHttpResponseHandler responseHandler){
+        if(token != null)
+            client.addHeader(authorizationHeader, token);
+        client.patch(null, getAbsoluteUrl(url), entity, "application/json", responseHandler);
     }
 
     private static String getAbsoluteUrl(String relativeUrl) {
