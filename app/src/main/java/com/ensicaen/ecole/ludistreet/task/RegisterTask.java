@@ -42,8 +42,7 @@ public class RegisterTask extends AsyncTask<RegisterModel, Void, Boolean> {
         if(result) {
             WallModel w = new WallModel(2,2);
             ARView arv = new ARView(w);
-            DefaultARSetup ar = arv.getSetup();
-            ArActivity.startWithSetup(_activity, ar);
+            ArActivity.startWithSetup(_activity, arv.getSetup());
             return;
         }
         Toast.makeText(_activity, "Erreur lors de la connexion",
