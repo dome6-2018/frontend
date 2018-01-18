@@ -4,11 +4,14 @@ import android.accounts.NetworkErrorException;
 
 import com.ensicaen.ecole.ludistreet.model.LoginModel;
 import com.ensicaen.ecole.ludistreet.model.RegisterModel;
+import com.ensicaen.ecole.ludistreet.model.WallModel;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
@@ -20,6 +23,7 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 public class LudiStreetRestClient {
 
     private String TAG = "LUDISTREET REST CLIENT";
+    private WallModel wallModel;
 
     public LudiStreetRestClient(){}
 
@@ -33,7 +37,7 @@ public class LudiStreetRestClient {
 
         StringEntity entity = new StringEntity(loginGson);
 
-        HttpUtils.post("Login", entity, new TextHttpResponseHandler() {
+        HttpUtils.post("login", entity, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 if (statusCode == 200) {
@@ -58,7 +62,7 @@ public class LudiStreetRestClient {
 
         RequestParams params = null;
 
-        HttpUtils.post("Logout", params, new TextHttpResponseHandler() {
+        HttpUtils.post("logout", params, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 HttpUtils.token = null;
@@ -81,7 +85,7 @@ public class LudiStreetRestClient {
 
         entity = new StringEntity(loginGson);
 
-        HttpUtils.post("Register", entity, new TextHttpResponseHandler() {
+        HttpUtils.post("register", entity, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 if (statusCode == 200) {
@@ -92,7 +96,8 @@ public class LudiStreetRestClient {
             @Override
             public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
                 System.out.println("toto" + t.toString());
-                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                // called when response HTTP status is "4XX" (eg.
+
             }
         });
 
@@ -100,15 +105,18 @@ public class LudiStreetRestClient {
 
     public void Walls(String uuid){
         RequestParams params = null;
+        final Gson gson = new Gson();
 
-        HttpUtils.post("walls/"+uuid, params, new TextHttpResponseHandler() {
+        HttpUtils.get("walls/"+uuid, params, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
+                wallModel = gson.fromJson(res, new TypeToken<WallModel>(){}.getType());
                 System.out.println(res);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                wallModel = null;
                 System.out.println(res);
             }
         });
