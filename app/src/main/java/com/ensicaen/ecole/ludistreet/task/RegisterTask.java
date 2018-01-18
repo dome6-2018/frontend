@@ -14,9 +14,6 @@ import com.ensicaen.ecole.ludistreet.rest.LudiStreetRestClient;
 
 import java.io.UnsupportedEncodingException;
 
-import system.ArActivity;
-import system.DefaultARSetup;
-
 /**
  * Created by Thibaud on 17/01/2018.
  */
