@@ -50,6 +50,10 @@
             android:label="@string/title_activity_mode"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ArActivity"></activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

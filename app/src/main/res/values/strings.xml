@@ -11,4 +11,5 @@
     <string name="title_activity_nfcreader">NFCReader</string>
     <string name="title_activity_mode">ModeActivity</string>
     <string name="title_activity_nfctag">NFCTagActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 </resources>
