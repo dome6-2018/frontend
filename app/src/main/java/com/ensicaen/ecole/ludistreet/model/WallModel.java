@@ -20,9 +20,10 @@ public class WallModel{
     private List<BeaconModel> beacons;
     private Date createdAt;
     private Date updatedAt;
-
+    private boolean locked;
 
     public WallModel(int resX, int resY) {
+        this.locked = false;
         this.resX = resX;
         this.resY = resY;
 
@@ -120,5 +121,13 @@ public class WallModel{
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 }

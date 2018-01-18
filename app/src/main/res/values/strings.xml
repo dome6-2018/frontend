@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TestAR</string>
+    <string name="app_name">LudiStreet</string>
     <string name="title_activity_log_in">LogInActivity</string>
     <string name="login_id">IDENTIFIANT</string>
     <string name="login_pass">MOT DE PASSE</string>
@@ -11,4 +11,5 @@
     <string name="title_activity_nfcreader">NFCReader</string>
     <string name="title_activity_mode">ModeActivity</string>
     <string name="title_activity_nfctag">NFCTagActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 </resources>
