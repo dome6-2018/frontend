@@ -2,6 +2,7 @@ package com.ensicaen.ecole.ludistreet.RA;
 
 import android.app.Activity;
 
+import com.ensicaen.ecole.ludistreet.model.TicTacToeModel;
 import com.ensicaen.ecole.ludistreet.model.WallModel;
 
 import java.util.ArrayList;
@@ -59,7 +60,6 @@ public class WallSetup extends Setup {
         _color = col;
     }
 
-
     @Override
     public GLCamera getCamera() {
         return camera;
@@ -93,14 +93,27 @@ public class WallSetup extends Setup {
                 final MeshComponent square = objectFactory.newSquare(_model.getPixel(i,j));
                 final int finalI = i;
                 final int finalJ = j;
-                square.setOnClickCommand(new Command() {
-                    @Override
-                    public boolean execute() {
-                        square.setColor(_color);
-                        _model.setColorPixel(finalI, finalJ, _color);
-                        return true;
-                    }
-                });
+
+                if (!_model.isLocked()) {
+                    square.setOnClickCommand(new Command() {
+                        @Override
+                        public boolean execute() {
+                            square.setColor(_color);
+                            _model.setColorPixel(finalI, finalJ, _color);
+                            return true;
+                        }
+                    });
+                }
+                if (_model instanceof TicTacToeModel) {
+                    square.setOnClickCommand(new Command() {
+                        @Override
+                        public boolean execute() {
+                            square.setColor(_color);
+                            _model.setColorPixel(finalI, finalJ, _color);
+                            return true;
+                        }
+                    });
+                }
                 square.setRotation(new Vec(0, 90, 0));
                 square.setPosition(new Vec(50, 2 * j, 2*i));
                 compasrose.addChild(square);

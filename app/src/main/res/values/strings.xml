@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TestAR</string>
+    <string name="app_name">LudiStreet</string>
     <string name="title_activity_log_in">LogInActivity</string>
     <string name="login_id">IDENTIFIANT</string>
     <string name="login_pass">MOT DE PASSE</string>

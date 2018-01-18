@@ -8,22 +8,24 @@ import java.util.Date;
 
 public class BeaconModel {
 
-    private String UUID;
+    private String uuid;
     private Date addedAt;
     private Date updatedAt;
+    private int minor;
+    private int major;
 
     public BeaconModel(String UUID, Date addedAt, Date updatedAt) {
-        this.UUID = UUID;
+        this.uuid = UUID;
         this.addedAt = addedAt;
         this.updatedAt = updatedAt;
     }
 
     public String getUUID() {
-        return UUID;
+        return uuid;
     }
 
     public void setUUID(String UUID) {
-        this.UUID = UUID;
+        this.uuid = UUID;
     }
 
     public Date getAddedAt() {
@@ -40,5 +42,21 @@ public class BeaconModel {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public int getMinor() {
+        return minor;
+    }
+
+    public void setMinor(int minor) {
+        this.minor = minor;
+    }
+
+    public int getMajor() {
+        return major;
+    }
+
+    public void setMajor(int major) {
+        this.major = major;
     }
 }

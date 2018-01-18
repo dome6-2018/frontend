@@ -10,7 +10,6 @@ import android.view.MenuItem;
 
 import com.ensicaen.ecole.ludistreet.beacon.ThreadBeacon;
 
-import gl.GLCamera;
 import system.Setup;
 import util.Log;
 
@@ -119,7 +118,7 @@ public class ArActivity extends Activity {
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         if (mySetupToUse != null)
-            return mySetupToUse.onMenuItemSelected(featureId, item);
+        return mySetupToUse.onMenuItemSelected(featureId, item);
         return super.onMenuItemSelected(featureId, item);
     }
 
