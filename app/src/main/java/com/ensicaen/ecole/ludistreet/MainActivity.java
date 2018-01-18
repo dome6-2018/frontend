@@ -10,9 +10,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.ensicaen.ecole.ludistreet.model.LoginModel;
-import com.ensicaen.ecole.ludistreet.model.RegisterModel;
-import com.ensicaen.ecole.ludistreet.task.LoginTask;
-import com.ensicaen.ecole.ludistreet.task.RegisterTask;
 
 import gl.Color;
 import gl.GL1Renderer;
