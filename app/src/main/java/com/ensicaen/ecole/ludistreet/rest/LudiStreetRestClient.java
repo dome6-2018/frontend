@@ -34,7 +34,7 @@ public class LudiStreetRestClient {
 
         StringEntity entity = new StringEntity(loginGson);
 
-        HttpUtils.post("postLogin", entity, new TextHttpResponseHandler() {
+        HttpUtils.post("login", entity, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 if (statusCode == 200) {
@@ -59,7 +59,7 @@ public class LudiStreetRestClient {
 
         RequestParams params = null;
 
-        HttpUtils.post("postLogout", params, new TextHttpResponseHandler() {
+        HttpUtils.post("logout", params, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 HttpUtils.token = null;
@@ -82,7 +82,7 @@ public class LudiStreetRestClient {
 
         entity = new StringEntity(loginGson);
 
-        HttpUtils.post("postRegister", entity, new TextHttpResponseHandler() {
+        HttpUtils.post("register", entity, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 if (statusCode == 200) {
@@ -104,7 +104,7 @@ public class LudiStreetRestClient {
         RequestParams params = null;
         final Gson gson = new Gson();
 
-        HttpUtils.get("getWalls/"+uuid, params, new TextHttpResponseHandler() {
+        HttpUtils.get("walls/"+uuid, params, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
                 wallModel = gson.fromJson(res, new TypeToken<WallModel>(){}.getType());
@@ -126,7 +126,7 @@ public class LudiStreetRestClient {
 
         StringEntity entity = new StringEntity(wallGson);
 
-        HttpUtils.patch("getWalls/" + uuid + "/patchDrawing", entity, new TextHttpResponseHandler() {
+        HttpUtils.patch("walls/" + uuid + "/drawing", entity, new TextHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
@@ -141,6 +141,21 @@ public class LudiStreetRestClient {
     }
 
     public void getMe(){
-        
+
+        RequestParams params = null;
+        final Gson gson = new Gson();
+
+        HttpUtils.get("me/", params, new TextHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String res) {
+                
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                wallModel = null;
+                System.out.println(res);
+            }
+        });
     }
 }
