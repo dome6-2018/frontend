@@ -34,7 +34,7 @@
             android:layout_above="@+id/RelativeLayout03">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/mode_paint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
