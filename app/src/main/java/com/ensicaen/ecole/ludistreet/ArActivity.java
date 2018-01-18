@@ -10,6 +10,14 @@ import android.view.MenuItem;
 
 import com.ensicaen.ecole.ludistreet.beacon.ThreadBeacon;
 
+import com.estimote.coresdk.observation.region.RegionUtils;
+import com.estimote.coresdk.observation.region.beacon.BeaconRegion;
+import com.estimote.coresdk.recognition.packets.Beacon;
+import com.estimote.coresdk.service.BeaconManager;
+
+import java.util.List;
+import java.util.UUID;
+
 import system.Setup;
 import util.Log;
 
@@ -21,11 +29,67 @@ public class ArActivity extends Activity {
 
     private Setup mySetupToUse;
     private ThreadBeacon threadBeacon;
+    private BeaconManager beaconManager;
+    private BeaconRegion regionR, regionJ, regionB;
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        threadBeacon = new ThreadBeacon();
+        threadBeacon.start();
+
+        /****************************************************/
+
+        beaconManager = new BeaconManager(this);
+
+        regionR = new BeaconRegion("ranged region1",
+                UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D"), 121, 6227);
+        regionJ = new BeaconRegion("ranged region2",
+                UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D"), 44321, 38148);
+        regionB = new BeaconRegion("ranged region3",
+                UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D"), 43021, 46729);
+
+
+        beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
+            @Override
+            public void onServiceReady() {
+                beaconManager.startRanging(regionJ);
+                beaconManager.startRanging(regionB);
+                beaconManager.startRanging(regionR);
+            }
+        });
+
+
+        beaconManager.setRangingListener(new BeaconManager.BeaconRangingListener() {
+            @Override
+            public void onBeaconsDiscovered(BeaconRegion region, List<Beacon> list) {
+                if (!list.isEmpty()) {
+                    double distanceR, distanceJ, distanceB;
+                    for(Beacon b : list){
+                        if(b.getMajor() == 121){
+                            distanceR = RegionUtils.computeAccuracy(b);
+                            threadBeacon.setDistanceR(distanceR);
+                        }else if (b.getMajor() == 44321){
+                            distanceJ = RegionUtils.computeAccuracy(b);
+                            threadBeacon.setDistanceJ(distanceJ);
+                        }else if (b.getMajor() == 43021){
+                            distanceB = RegionUtils.computeAccuracy(b);
+                            threadBeacon.setDistanceB(distanceB);
+                        }
+                    }
+                }
+                else{
+                    Log.d("EMPTY","EMPTY");
+                }
+            }
+        });
+
+        /****************************************************/
+
+
         Log.d(LOG_TAG, "main onCreate");
         if (staticSetupHolder != null) {
             mySetupToUse = staticSetupHolder;
@@ -53,8 +117,7 @@ public class ArActivity extends Activity {
     }
 
     private void runSetup() {
-        threadBeacon = new ThreadBeacon(mySetupToUse);
-        threadBeacon.start();
+        threadBeacon.setSetup(mySetupToUse);
         mySetupToUse.run(this);
     }
 
