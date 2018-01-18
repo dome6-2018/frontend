@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toolbar;
 
+import com.ensicaen.ecole.ludistreet.RA.ARImageSetup;
 import com.ensicaen.ecole.ludistreet.RA.WallSetup;
 import com.ensicaen.ecole.ludistreet.beacon.ThreadBeacon;
 
@@ -33,7 +34,7 @@ public class ArActivity extends Activity {
 
     private static Setup staticSetupHolder;
 
-    private WallSetup mySetupToUse;
+    private Setup mySetupToUse;
     private ThreadBeacon threadBeacon;
     private BeaconManager beaconManager;
     private List<BeaconRegion> regions;
@@ -46,7 +47,7 @@ public class ArActivity extends Activity {
 
         Log.d(LOG_TAG, "main onCreate");
         if (staticSetupHolder != null) {
-            mySetupToUse = (WallSetup) staticSetupHolder;
+            mySetupToUse = staticSetupHolder;
             staticSetupHolder = null;
             runSetup();
 
@@ -83,46 +84,49 @@ public class ArActivity extends Activity {
     private void runSetup() {
         /****************************************************/
         /*
-        threadBeacon.setSetup(mySetupToUse);
-        threadBeacon = new ThreadBeacon();
-        threadBeacon.start();
+        if (mySetupToUse instanceof WallSetup) {
+            threadBeacon.setSetup(mySetupToUse);
+            threadBeacon = new ThreadBeacon();
+            threadBeacon.start();
 
-        beaconManager = new BeaconManager(this);
-        beaconManager.setForegroundScanPeriod(10,0);
+            beaconManager = new BeaconManager(this);
+            beaconManager.setForegroundScanPeriod(10, 0);
 
-        List<BeaconModel> beacons = mySetupToUse.getModel().getBeacons();
-        for (BeaconModel i : beacons) {
-            regions.add(new BeaconRegion("region" + i.getMinor(),
-                    UUID.fromString(i.getUUID()), i.getMajor(), i.getMinor()));
-        }
+            List<BeaconModel> beacons = ((WallSetup) mySetupToUse).getModel().getBeacons();
 
-        beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
-            @Override
-            public void onServiceReady() {
-                for ( BeaconRegion region : regions) {
-                    beaconManager.startRanging(region);
-                }
+
+            for (BeaconModel i : beacons) {
+                regions.add(new BeaconRegion("region" + i.getMinor(),
+                        UUID.fromString(i.getUUID()), i.getMajor(), i.getMinor()));
             }
-        });
 
-
-        beaconManager.setRangingListener(new BeaconManager.BeaconRangingListener() {
-            @Override
-            public void onBeaconsDiscovered(BeaconRegion region, List<Beacon> list) {
-                if (!list.isEmpty()) {
-                    ArrayList<Double> distances = new ArrayList<>();
-
-                    for(Beacon b : list){
-                        distances.add(RegionUtils.computeAccuracy(b));
+            beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
+                @Override
+                public void onServiceReady() {
+                    for (BeaconRegion region : regions) {
+                        beaconManager.startRanging(region);
                     }
+                }
+            });
 
-                    threadBeacon.setDistances(distances);
+
+            beaconManager.setRangingListener(new BeaconManager.BeaconRangingListener() {
+                @Override
+                public void onBeaconsDiscovered(BeaconRegion region, List<Beacon> list) {
+                    if (!list.isEmpty()) {
+                        ArrayList<Double> distances = new ArrayList<>();
+
+                        for (Beacon b : list) {
+                            distances.add(RegionUtils.computeAccuracy(b));
+                        }
+
+                        threadBeacon.setDistances(distances);
+                    } else {
+                        Log.d("EMPTY", "EMPTY");
+                    }
                 }
-                else{
-                    Log.d("EMPTY","EMPTY");
-                }
-            }
-        });
+            });
+        }
         */
         /****************************************************/
 
