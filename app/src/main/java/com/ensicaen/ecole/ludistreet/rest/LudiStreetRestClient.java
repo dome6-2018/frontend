@@ -28,9 +28,9 @@ public class LudiStreetRestClient {
     public LudiStreetRestClient(){}
 
     /**
-     * Send Login/password
+     * Send login/password
      */
-    public void Login(LoginModel loginModel) throws UnsupportedEncodingException {
+    public void login(LoginModel loginModel) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String loginGson = gson.toJson(loginModel);
@@ -58,7 +58,7 @@ public class LudiStreetRestClient {
         });
     }
 
-    public void Logout(){
+    public void logout(){
 
         RequestParams params = null;
 
@@ -76,7 +76,7 @@ public class LudiStreetRestClient {
         });
     }
 
-    public void Register(RegisterModel user) throws UnsupportedEncodingException {
+    public void register(RegisterModel user) throws UnsupportedEncodingException {
 
         Gson gson = new Gson();
         String loginGson = gson.toJson(user);
@@ -103,7 +103,7 @@ public class LudiStreetRestClient {
 
     }
 
-    public void Walls(String uuid){
+    public void walls(String uuid){
         RequestParams params = null;
         final Gson gson = new Gson();
 

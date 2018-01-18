@@ -1,14 +1,11 @@
 package com.ensicaen.ecole.ludistreet.task;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.view.View;
 import android.widget.Toast;
 
 import com.ensicaen.ecole.ludistreet.LogInActivity;
 import com.ensicaen.ecole.ludistreet.RA.ARView;
-import com.ensicaen.ecole.ludistreet.SubscribeActivity;
 import com.ensicaen.ecole.ludistreet.model.LoginModel;
 import com.ensicaen.ecole.ludistreet.model.WallModel;
 import com.ensicaen.ecole.ludistreet.rest.LudiStreetRestClient;
@@ -34,7 +31,7 @@ public class LoginTask extends AsyncTask<LoginModel, Void , Boolean> {
     protected Boolean doInBackground(LoginModel... loginModels) {
         try{
             LudiStreetRestClient ludiStreetRestClient = new LudiStreetRestClient();
-            ludiStreetRestClient.Login(loginModels[0]);
+            ludiStreetRestClient.login(loginModels[0]);
         } catch (UnsupportedEncodingException e) {
             return false;
         }
