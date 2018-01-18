@@ -16,8 +16,15 @@ public class ChoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice);
 
-        ImageView paint = (ImageView)findViewById(R.id.where_to_go);
-        
-        ImageView game = (ImageView)findViewById(R.id.i_am_here);
+        ImageView where = (ImageView)findViewById(R.id.where_to_go);
+        ImageView here = (ImageView)findViewById(R.id.i_am_here);
+
+        here.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ChoiceActivity.this, SelectWallActivity.class);
+                ChoiceActivity.this.startActivity(intent);
+            }
+        });
     }
 }

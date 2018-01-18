@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.ensicaen.ecole.ludistreet.model.LoginModel;
+import com.ensicaen.ecole.ludistreet.rest.HttpUtils;
 import com.ensicaen.ecole.ludistreet.task.LoginTask;
 
 public class LogInActivity extends AppCompatActivity {
@@ -33,8 +34,18 @@ public class LogInActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(LogInActivity.this, SubscribeActivity.class);
                 LogInActivity.this.startActivity(intent);
+                LogInActivity.this.finish();
             }
         });
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if(HttpUtils.token != null){
+            Intent intent = new Intent(this, StartActivity.class);
+            this.startActivity(intent);
+        }
     }
 
 }

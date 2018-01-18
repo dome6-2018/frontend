@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.ensicaen.ecole.ludistreet.rest.HttpUtils;
+
 
 public class StartActivity extends AppCompatActivity {
 
@@ -54,13 +56,37 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         final ImageView bottomImage = (ImageView) findViewById(R.id.click_to_start);
 
-        bottomImage.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, LogInActivity.class);
-                startActivityForResult(intent, CONNECT_REQUEST);
-            }
-        });
+        if(HttpUtils.token != null){
+            bottomImage.setImageResource(R.drawable.click_to_start);
+            bottomImage.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(StartActivity.this, ChoiceActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }else{
+            bottomImage.setImageResource(R.drawable.log_in);
+            bottomImage.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(StartActivity.this, LogInActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
 
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final ImageView bottomImage = (ImageView) findViewById(R.id.click_to_start);
+        if(HttpUtils.token != null){
+            bottomImage.setImageResource(R.drawable.click_to_start);
+        }else{
+            bottomImage.setImageResource(R.drawable.log_in);
+        }
     }
 
     @Override
