@@ -102,7 +102,7 @@ public class WallSetup extends Setup {
 
                             LudiStreetRestClient ls = new LudiStreetRestClient();
                             try {
-                                ls.drawing(_model.getCode(), _model);
+                                ls.patchDrawing(_model.getCode(), _model);
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
