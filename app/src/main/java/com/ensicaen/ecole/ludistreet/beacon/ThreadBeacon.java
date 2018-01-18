@@ -30,21 +30,23 @@ public class ThreadBeacon extends Thread {
                 deltaR = distanceR - lastdistanceR;
 
                 if (_setup != null) {
+
                     if (Math.abs(deltaJ) > threshold && Math.abs(deltaR) > threshold) {
-                        if(deltaJ < 0 && deltaR > 0){ // joueur va vers la droite
+                        if (deltaJ < 0 && deltaR > 0) { // joueur va vers la droite
                             _setup.getCamera().changeNewPosition(1, 0, 0);
-                        }
-                        else if( deltaJ > 0 && deltaR < 0){ // joueur va vers la gauche
+                        } else if (deltaJ > 0 && deltaR < 0) { // joueur va vers la gauche
                             _setup.getCamera().changeNewPosition(-1, 0, 0);
                         }
                     }
+/*
                     if(Math.abs(deltaB) > threshold){
                         if(deltaB < 0){ // joueur va vers l'avant
-                            _setup.getCamera().changeNewPosition(0,0,-1);
+                            _setup.getCamera().changeNewPosition(0,0,-10);
                         }else{
-                            _setup.getCamera().changeNewPosition(0,0,1);
+                            _setup.getCamera().changeNewPosition(0,0,10);
                         }
                     }
+                    */
                 }
 
             } catch (InterruptedException e) {

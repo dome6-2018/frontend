@@ -47,6 +47,7 @@ public class ArActivity extends Activity {
         /****************************************************/
 
         beaconManager = new BeaconManager(this);
+        beaconManager.setForegroundScanPeriod(10,0);
 
         regionR = new BeaconRegion("ranged region1",
                 UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D"), 121, 6227);
