@@ -5,14 +5,12 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.ensicaen.ecole.ludistreet.LogInActivity;
-import com.ensicaen.ecole.ludistreet.ModeActivity;
-import com.ensicaen.ecole.ludistreet.RA.ARView;
 import com.ensicaen.ecole.ludistreet.SubscribeActivity;
 import com.ensicaen.ecole.ludistreet.model.RegisterModel;
-import com.ensicaen.ecole.ludistreet.model.WallModel;
 import com.ensicaen.ecole.ludistreet.rest.LudiStreetRestClient;
 
 import java.io.UnsupportedEncodingException;
+
 
 /**
  * Created by Thibaud on 17/01/2018.
@@ -30,7 +28,7 @@ public class RegisterTask extends AsyncTask<RegisterModel, Void, Boolean> {
     protected Boolean doInBackground(RegisterModel... registerModels) {
         try {
             LudiStreetRestClient ludiStreetRestClient = new LudiStreetRestClient();
-            ludiStreetRestClient.register(registerModels[0]);
+            ludiStreetRestClient.postRegister(registerModels[0]);
         } catch (UnsupportedEncodingException e) {
             return false;
         }
