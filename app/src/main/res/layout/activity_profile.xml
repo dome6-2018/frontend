@@ -24,80 +24,115 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 app:srcCompat="@drawable/profile_identifiant" />
-
             <TextView
+                android:id="@+id/editText_identifiant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textSize="16dp"
+                android:layout_marginBottom="5dp"
+                android:inputType="textPersonName"
+                android:text="I D E N T I F I A N T"
+                android:textAlignment="center"
+                android:textColor="@android:color/white" />
+
+            <EditText
                 android:id="@+id/loginEdit"
                 android:layout_width="285dp"
                 android:layout_height="40dp"
                 android:layout_marginBottom="5dp"
+                android:inputType="none"
                 android:background="@drawable/rounded_edit_text"
+                android:clickable="false"
                 android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:fontFamily="Segoe UI"
                 android:hint="@string/login_id"
-                android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/editText_points"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:layout_marginBottom="5dp"
+                android:textSize="16dp"
                 android:inputType="textPersonName"
-                android:text="POINTS"
+                android:text="P O I N T S"
                 android:textAlignment="center"
                 android:textColor="@android:color/white" />
 
-            <TextView
+            <EditText
                 android:layout_width="285dp"
                 android:layout_height="40dp"
                 android:layout_marginBottom="5dp"
+                android:inputType="none"
                 android:background="@drawable/rounded_edit_text"
+                android:clickable="false"
                 android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:fontFamily="Segoe UI"
                 android:hint="POINTS"
-                android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/editText_reduction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:layout_marginBottom="5dp"
+                android:textSize="16dp"
                 android:inputType="textPersonName"
-                android:text="REDUCTION"
+                android:text="R E D U C T I O N S"
                 android:textAlignment="center"
                 android:textColor="@android:color/white" />
 
-            <TextView
+            <EditText
                 android:layout_width="285dp"
                 android:layout_height="40dp"
                 android:layout_marginBottom="5dp"
+                android:inputType="none"
                 android:background="@drawable/rounded_edit_text"
+                android:clickable="false"
                 android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:fontFamily="Segoe UI"
                 android:hint="REDUCTIONS"
-                android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/editText_informations"
+            <TextView
+                android:id="@+id/editText_informations1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textSize="16dp"
                 android:inputType="textPersonName"
-                android:text="MODIFICATION DE VOS INFORMATIONS"
+                android:text="M O D I F I C A T I O N  D E  V O S"
                 android:textAlignment="center"
                 android:textColor="@android:color/white" />
-
+            <TextView
+                android:id="@+id/editText_informations2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginBottom="5dp"
+                android:textSize="16dp"
+                android:inputType="textPersonName"
+                android:text="I N F O R M A T I O N S"
+                android:textAlignment="center"
+                android:textColor="@android:color/white" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -107,17 +142,18 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toTopOf="parent"
                     android:gravity="center_horizontal|center_vertical">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/textView_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="140dp"
                         android:layout_height="40dp"
                         android:layout_marginBottom="5dp"
-                        android:background="@drawable/rounded_edit_text"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/rounded_edit_text_white"
                         android:cursorVisible="false"
                         android:ems="10"
                         android:fontFamily="Segoe UI"
@@ -127,12 +163,12 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/textView_surname"
-                        android:layout_width="wrap_content"
+                        android:layout_width="140dp"
                         android:layout_height="40dp"
                         android:layout_marginBottom="5dp"
-                        android:background="@drawable/rounded_edit_text"
+                        android:background="@drawable/rounded_edit_text_white"
                         android:cursorVisible="false"
                         android:ems="10"
                         android:fontFamily="Segoe UI"
@@ -145,17 +181,18 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toTopOf="parent"
                     android:gravity="center_horizontal|center_vertical">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/textView_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="140dp"
                         android:layout_height="40dp"
                         android:layout_marginBottom="5dp"
-                        android:background="@drawable/rounded_edit_text"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/rounded_edit_text_white"
                         android:cursorVisible="false"
                         android:ems="10"
                         android:fontFamily="Segoe UI"
@@ -165,12 +202,12 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/textView_password"
-                        android:layout_width="wrap_content"
+                        android:layout_width="140dp"
                         android:layout_height="40dp"
                         android:layout_marginBottom="5dp"
-                        android:background="@drawable/rounded_edit_text"
+                        android:background="@drawable/rounded_edit_text_white"
                         android:cursorVisible="false"
                         android:ems="10"
                         android:fontFamily="Segoe UI"
@@ -181,31 +218,31 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textView_mail"
-                    android:layout_width="360dp"
+                <EditText
+                    android:id="@+id/textView_check_password"
+                    android:layout_width="285dp"
                     android:layout_height="40dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/rounded_edit_text"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edit_text_white"
                     android:cursorVisible="false"
                     android:ems="10"
                     android:fontFamily="Segoe UI"
-                    android:hint="EMAIL"
+                    android:hint="VERIFICATION MOT DE PASSE"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textView_check_password"
-                    android:layout_width="360dp"
+                <EditText
+                    android:id="@+id/textView_mail"
+                    android:layout_width="285dp"
                     android:layout_height="40dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/rounded_edit_text"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edit_text_white"
                     android:cursorVisible="false"
                     android:ems="10"
                     android:fontFamily="Segoe UI"
-                    android:hint="VERIFICATION MOT DE PASSE"
+                    android:hint="EMAIL"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
                     android:textSize="15sp"
@@ -217,6 +254,7 @@
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
                     android:cropToPadding="false"
+                    android:layout_marginBottom="10dp"
                     app:srcCompat="@drawable/profile_button_save" />
 
             </LinearLayout>
