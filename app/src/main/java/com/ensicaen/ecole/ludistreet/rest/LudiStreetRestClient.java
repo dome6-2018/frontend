@@ -2,6 +2,7 @@ package com.ensicaen.ecole.ludistreet.rest;
 
 import com.ensicaen.ecole.ludistreet.model.LoginModel;
 import com.ensicaen.ecole.ludistreet.model.RegisterModel;
+import com.ensicaen.ecole.ludistreet.model.UserModel;
 import com.ensicaen.ecole.ludistreet.model.WallModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,6 +22,7 @@ public class LudiStreetRestClient {
 
     private String TAG = "LUDISTREET REST CLIENT";
     private WallModel wallModel;
+    private UserModel userModel;
 
     public LudiStreetRestClient(){}
 
@@ -148,12 +150,33 @@ public class LudiStreetRestClient {
         HttpUtils.get("me/", params, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
-                
+                userModel = gson.fromJson(res, new TypeToken<UserModel>(){}.getType());
+                System.out.println(res);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
-                wallModel = null;
+                userModel = null;
+                System.out.println(res);
+            }
+        });
+    }
+
+    public void patchMe(UserModel userModel) throws UnsupportedEncodingException {
+        Gson gson = new Gson();
+        String userGson = gson.toJson(userModel);
+
+        StringEntity entity = new StringEntity(userGson);
+
+        HttpUtils.patch("me", entity, new TextHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String res) {
+                System.out.println(res);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable throwable) {
                 System.out.println(res);
             }
         });
