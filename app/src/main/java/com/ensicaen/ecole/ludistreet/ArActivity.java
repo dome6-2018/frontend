@@ -14,15 +14,11 @@ import android.widget.Toolbar;
 import com.ensicaen.ecole.ludistreet.RA.WallSetup;
 import com.ensicaen.ecole.ludistreet.beacon.ThreadBeacon;
 
-import com.ensicaen.ecole.ludistreet.model.BeaconModel;
-import com.estimote.coresdk.observation.region.RegionUtils;
+import com.ensicaen.ecole.ludistreet.model.Beacon;
 import com.estimote.coresdk.observation.region.beacon.BeaconRegion;
-import com.estimote.coresdk.recognition.packets.Beacon;
 import com.estimote.coresdk.service.BeaconManager;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import system.Setup;
 import util.Log;
@@ -37,8 +33,6 @@ public class ArActivity extends Activity {
     private ThreadBeacon threadBeacon;
     private BeaconManager beaconManager;
     private List<BeaconRegion> regions;
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -202,7 +196,4 @@ public class ArActivity extends Activity {
             Log.d(LOG_TAG, "orientation changed to portrait");
         super.onConfigurationChanged(newConfig);
     }
-
-
-
 }

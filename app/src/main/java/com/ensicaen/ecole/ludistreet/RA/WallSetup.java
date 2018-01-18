@@ -5,8 +5,6 @@ import android.app.Activity;
 import com.ensicaen.ecole.ludistreet.model.Wall;
 import com.ensicaen.ecole.ludistreet.rest.WallsRestClient;
 
-import java.io.UnsupportedEncodingException;
-
 import actions.Action;
 import actions.ActionMoveCameraBuffered;
 import actions.ActionRotateCameraBuffered;
@@ -188,7 +186,7 @@ public class WallSetup extends Setup {
     }
 
 
-    public WallModel getModel() {
+    public Wall getModel() {
         return _model;
     }
 

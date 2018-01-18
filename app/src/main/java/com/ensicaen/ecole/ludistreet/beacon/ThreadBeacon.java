@@ -63,7 +63,6 @@ public class ThreadBeacon extends Thread {
 
     }
 
-
     public void setSetup(Setup set) {
         _setup = set;
     }
