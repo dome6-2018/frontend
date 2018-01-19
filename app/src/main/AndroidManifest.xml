@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ar.RangingActivity"
+            android:name=".activities.RangingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.LogInActivity"

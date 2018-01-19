@@ -30,7 +30,7 @@ public class LogInActivity extends AppCompatActivity {
                 final String password = ((EditText) findViewById(R.id.passEdit)).getText().toString();
                 Login loginModel = new Login(login, password);
 
-                // Envoie des donnees au serveur
+                // Envoie des données au serveur
                 SecurityRestClient securityRestClient = new SecurityRestClient();
                 securityRestClient.postLogin(loginModel, new TextHttpResponseHandler() {
                     @Override
