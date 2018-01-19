@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.TextHttpResponseHandler;
 
@@ -54,22 +55,11 @@ public class WallsRestClient {
         });
     }
 
-    public void getWall(String uuid) {
-        HttpClient.get("walls/" + uuid, null, new TextHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, String res) {
-                Intent intent = new Intent(activity, ModeWallActivity.class);
-                activity.startActivity(intent);
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
-                Toast.makeText(activity, "Erreur lors de la récupération du mur", Toast.LENGTH_LONG).show();
-            }
-        });
+    public void getWall(String uuid, AsyncHttpResponseHandler asyncHttpResponseHandler) {
+        HttpClient.get("walls/" + uuid, null, asyncHttpResponseHandler);
     }
 
-    public void patchWallDrawing(String uuid, Wall wall) {
+    public void patchWallDrawing(String uuid, Wall wall, AsyncHttpResponseHandler asyncHttpResponseHandler) {
         Gson gson = new Gson();
         String wallJson = gson.toJson(wall);
         StringEntity entity = null;
@@ -80,16 +70,6 @@ public class WallsRestClient {
             e.printStackTrace();
         }
 
-        HttpClient.patch("walls/" + uuid + "/drawing", entity, new TextHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, String res) {
-                System.out.println(res);
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String res, Throwable throwable) {
-                Toast.makeText(activity, "Erreur lors de l'envoi du dessin", Toast.LENGTH_LONG).show();
-            }
-        });
+        HttpClient.patch("walls/" + uuid + "/drawing", entity, asyncHttpResponseHandler);
     }
 }

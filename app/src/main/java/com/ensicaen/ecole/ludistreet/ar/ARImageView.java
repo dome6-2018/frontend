@@ -5,7 +5,6 @@ import android.content.Context;
 /**
  * Created by jorand on 18/01/2018.
  */
-
 public class ARImageView {
     private ARImageSetup arImageSetup;
 

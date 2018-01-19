@@ -2,19 +2,17 @@ package com.ensicaen.ecole.ludistreet.ar;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Set;
 
 import system.Setup;
 
 /**
  * Created by jorand on 17/01/2018.
  */
-
 public class ThreadBeacon extends Thread {
     private int x;      // distance par rapport a la largeur du mur
     private int y;      // distance par rapport a la hauteur du mur
     private int z;      // distance utilisateur / mur
-    private Setup _setup = null;
+    private Setup setup = null;
     private final static double threshold = 0.5;
 
 
@@ -36,21 +34,21 @@ public class ThreadBeacon extends Thread {
                 deltaDroite = distances.get(1) - lastDistances.get(1);
                 deltaGauche = distances.get(0) - lastDistances.get(0);
 
-                if (_setup != null) {
+                if (setup != null) {
 
                     if (Math.abs(deltaDroite) > threshold && Math.abs(deltaGauche) > threshold) {
                         if (deltaDroite < 0 && deltaGauche > 0) { // joueur va vers la droite
-                            _setup.getCamera().changeNewPosition(0, 0, 0);
+                            setup.getCamera().changeNewPosition(0, 0, 0);
                         } else if (deltaDroite > 0 && deltaGauche < 0) { // joueur va vers la gauche
-                            _setup.getCamera().changeNewPosition(0, 0, 0);
+                            setup.getCamera().changeNewPosition(0, 0, 0);
                         }
                     }
 /*
                     if(Math.abs(deltaProfondeur) > threshold){
                         if(deltaProfondeur < 0){ // joueur va vers l'avant
-                            _setup.getCamera().changeNewPosition(0,0,-10);
+                            setup.getCamera().changeNewPosition(0,0,-10);
                         }else{
-                            _setup.getCamera().changeNewPosition(0,0,10);
+                            setup.getCamera().changeNewPosition(0,0,10);
                         }
                     }
                     */
@@ -63,8 +61,8 @@ public class ThreadBeacon extends Thread {
 
     }
 
-    public void setSetup(Setup set) {
-        _setup = set;
+    public void setSetup(Setup setup) {
+        this.setup = setup;
     }
 
     public void setDistances(ArrayList<Double> dist) {

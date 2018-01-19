@@ -32,8 +32,8 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
 
-        final ImageView subscribeButton = (ImageView) findViewById(R.id.sub_button);
-        subscribeButton.setOnClickListener(new View.OnClickListener() {
+        final ImageView registerButton = (ImageView) findViewById(R.id.sub_button);
+        registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(LogInActivity.this, RegisterActivity.class);
                 LogInActivity.this.startActivity(intent);

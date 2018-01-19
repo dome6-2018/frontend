@@ -14,11 +14,17 @@ import android.nfc.tech.NfcB;
 import android.nfc.tech.NfcF;
 import android.nfc.tech.NfcV;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.ensicaen.ecole.ludistreet.R;
 import com.ensicaen.ecole.ludistreet.rest.WallsRestClient;
+import com.loopj.android.http.TextHttpResponseHandler;
+
+import cz.msebera.android.httpclient.Header;
 
 public class ScanWallActivity extends Activity {
+
+    String wallUuid;
 
     // list of NFC technologies detected:
     private final String[][] techList = new String[][] {
@@ -65,11 +71,23 @@ public class ScanWallActivity extends Activity {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        if (intent.getAction().equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
-            String wallUuid = byteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID));
+        if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
+            wallUuid = byteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID));
 
             WallsRestClient wallsRestClient = new WallsRestClient(ScanWallActivity.this);
-            wallsRestClient.getWall(wallUuid);
+            wallsRestClient.getWall(wallUuid, new TextHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, String res) {
+                    Intent intent = new Intent(ScanWallActivity.this, ModeWallActivity.class);
+                    intent.putExtra("WALL_UUID", wallUuid);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                    Toast.makeText(ScanWallActivity.this, "Erreur lors de la récupération du mur", Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 

@@ -28,7 +28,6 @@ import worldData.World;
 /**
  * Created by jorand on 18/01/2018.
  */
-
 public class ARImageSetup extends Setup {
     private GLCamera camera;
     private World world;
@@ -100,6 +99,5 @@ public class ARImageSetup extends Setup {
     @Override
     public void _e2_addElementsToGuiSetup(GuiSetup guiSetup, Activity activity) {
     }
-
 
 }

@@ -4,23 +4,22 @@ import com.ensicaen.ecole.ludistreet.models.Wall;
 
 import gl.Color;
 
-
 public class ARView {
-    private Wall _model;
-    private Color _color = new Color(0.0f, 0.0f, 0.0f, 0.8f);
-    private WallSetup _setup;
+    private Wall wall;
+    private Color color = new Color(0.0f, 0.0f, 0.0f, 0.8f);
+    private WallSetup setup;
 
-    public ARView(Wall model){
-        _model = model;
-        _setup = new WallSetup(_color, model);
+    public ARView(Wall wall){
+        this.wall = wall;
+        setup = new WallSetup(color, wall);
     }
 
     public void setColor(Color c) {
-        _color = c;
+        color = c;
     }
 
     public WallSetup getSetup() {
-        return _setup;
+        return setup;
     }
 
 }

@@ -1,9 +1,11 @@
 package com.ensicaen.ecole.ludistreet.ar;
 
 import android.app.Activity;
+import android.widget.Toast;
 
 import com.ensicaen.ecole.ludistreet.models.Wall;
 import com.ensicaen.ecole.ludistreet.rest.WallsRestClient;
+import com.loopj.android.http.TextHttpResponseHandler;
 
 import actions.Action;
 import actions.ActionMoveCameraBuffered;
@@ -14,6 +16,7 @@ import actions.ActionRotateCameraUnbuffered;
 import actions.ActionRotateCameraUnbuffered2;
 import actions.ActionUseCameraAngles2;
 import commands.Command;
+import cz.msebera.android.httpclient.Header;
 import geo.GeoObj;
 import gl.Color;
 import gl.CustomGLSurfaceView;
@@ -25,6 +28,7 @@ import gl.scenegraph.Shape;
 import gui.GuiSetup;
 import system.EventManager;
 import system.Setup;
+import util.Log;
 import util.Vec;
 import worldData.SystemUpdater;
 import worldData.World;
@@ -32,7 +36,6 @@ import worldData.World;
 /**
  * Created by jorand on 18/01/2018.
  */
-
 public class WallSetup extends Setup {
     private GLCamera camera;
     private World world;
@@ -41,13 +44,12 @@ public class WallSetup extends Setup {
     private Action rotActionB4;
     private Action rotActionUnB;
     private Action rotActionUnB2;
-    private Wall _model;
-    private Color _color;
+    private Wall wall;
+    private Color color;
 
-
-    public WallSetup(Color col, Wall mod) {
-        _model = mod;
-        _color = col;
+    public WallSetup(Color color, Wall wall) {
+        this.wall = wall;
+        this.color = color;
     }
 
     @Override
@@ -73,24 +75,43 @@ public class WallSetup extends Setup {
 
         MeshComponent compasrose = new Shape();
 
-        int x = _model.getResX();
-        int y = _model.getResY();
+        int x = wall.getResX();
+        int y = wall.getResY();
 
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                final MeshComponent square = objectFactory.newSquare(_model.getPixel(i,j));
+                final MeshComponent square = objectFactory.newSquare(wall.getPixel(i,j));
                 final int finalI = i;
                 final int finalJ = j;
 
-                if (!_model.isLocked()) {
+                if (!wall.isLocked()) {
                     square.setOnClickCommand(new Command() {
                         @Override
                         public boolean execute() {
-                            square.setColor(_color);
-                            _model.setColorPixel(finalI, finalJ, _color);
+                            square.setColor(color);
+                            wall.setColorPixel(finalI, finalJ, color);
 
                             WallsRestClient wallsRestClient = new WallsRestClient(null);
-                            wallsRestClient.patchWallDrawing(_model.getUuid(), _model);
+                            wallsRestClient.patchWallDrawing(wall.getUuid(), wall, new TextHttpResponseHandler() {
+                                @Override
+                                public void onSuccess(int statusCode, Header[] headers, String res) {
+                                    Log.e("STATUSCODE : " + statusCode, "RES" + res);
+                                }
+
+                                @Override
+                                public void onFailure(int statusCode, Header[] headers, String res, Throwable throwable) {
+                                    Log.e("STATUSCODE : " + statusCode, "RES" + res);
+                                }
+
+                                @Override
+                                public boolean getUseSynchronousMode() {
+                                    return false;
+                                }
+
+                                @Override
+                                public void setUseSynchronousMode(boolean useSynchronousMode) {
+                                }
+                            });
 
                             return true;
                         }
@@ -147,9 +168,8 @@ public class WallSetup extends Setup {
     public void _e2_addElementsToGuiSetup(GuiSetup guiSetup, Activity activity) {
     }
 
-
-    public Wall getModel() {
-        return _model;
+    public Wall getWall() {
+        return wall;
     }
 
 }
