@@ -26,7 +26,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
         <activity
-            android:name=".StartActivity"
+            android:name=".activities.StartActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,40 +34,50 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".beacon.RangingActivity"
+            android:name=".activities.RangingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LogInActivity"
+            android:name=".activities.LogInActivity"
             android:label="@string/title_activity_log_in"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SubscribeActivity"
+            android:name=".activities.RegisterActivity"
             android:label="@string/title_activity_subscribe"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SelectWallActivity"
+            android:name=".activities.ScanWallActivity"
             android:label="@string/title_activity_nfcreader"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ModeActivity"
+            android:name=".activities.ModeWallActivity"
             android:label="@string/title_activity_mode"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ArActivity" />
+        <activity android:name=".activities.ArActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".ProfileActivity"
+            android:name=".activities.ProfileActivity"
             android:label="@string/title_activity_profile"
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ChoiceActivity"
+            android:name=".activities.ChoiceWallActivity"
             android:label="@string/title_activity_choice"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".activities.SearchWallActivity"
+            android:label="@string/title_activity_nfcreader"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCcyjEFTsmBl2q01V_iTjel5a8yKdM6vbY"/>
     </application>
 
 </manifest>
