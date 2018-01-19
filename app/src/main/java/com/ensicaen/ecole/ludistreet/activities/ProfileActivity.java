@@ -1,4 +1,4 @@
-package com.ensicaen.ecole.ludistreet.activities;
+package com.ensicaen.ecole.ludistreet;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.ensicaen.ecole.ludistreet.R;
 import com.ensicaen.ecole.ludistreet.models.User;
+import com.ensicaen.ecole.ludistreet.rest.MeRestClient;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -41,7 +41,10 @@ public class ProfileActivity extends AppCompatActivity {
                 final String email = ((EditText) findViewById(R.id.textView_mail)).getText().toString();
                 final int score = Integer.parseInt(((EditText) findViewById(R.id.textView_point)).getText().toString());
 
-                User model = new User(id, username, surname, name, email, score);
+                User user = new User(id, username, surname, name, email, score);
+
+                MeRestClient meRestClient = new MeRestClient(ProfileActivity.this);
+                meRestClient.patchMe(user);
             }
         });
     }
