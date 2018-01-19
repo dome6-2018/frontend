@@ -1,6 +1,5 @@
 package com.ensicaen.ecole.ludistreet.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,12 +12,12 @@ import com.ensicaen.ecole.ludistreet.models.Wall;
 import com.ensicaen.ecole.ludistreet.rest.WallsRestClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.TextHttpResponseHandler;
 
-import java.util.List;
+import org.json.JSONException;
 
 import cz.msebera.android.httpclient.Header;
+import util.Log;
 
 public class ModeWallActivity extends AppCompatActivity {
 
@@ -43,9 +42,19 @@ public class ModeWallActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         Wall wall = gson.fromJson(res, new TypeToken<Wall>(){}.getType());
 
-                        // Si jamais l'image est invalide, on en recrée une nouvelle
-                        if (wall.getDrawing().length == 0) {
+                        // Chargement de l'image initiale
+                        if (wall.getDrawingArray() == null || wall.getDrawingArray().length == 0) {
                             wall.initBlankDrawing();
+                        }
+
+                        // Chargement de l'image en base de données
+                        if (wall.getDrawing() != null) {
+                            try {
+                                wall.loadDrawingFromString();
+                            } catch (JSONException e) {
+                                Toast.makeText(ModeWallActivity.this,
+                                        "Erreur lors du chargement du mur", Toast.LENGTH_LONG).show();
+                            }
                         }
 
                         ARView arv = new ARView(wall);
@@ -54,7 +63,8 @@ public class ModeWallActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
-                        Toast.makeText(ModeWallActivity.this, "Erreur lors de la récupération du mur", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ModeWallActivity.this,
+                                "Erreur lors de la récupération du mur", Toast.LENGTH_LONG).show();
                     }
                 });
             }

@@ -7,6 +7,8 @@ import com.ensicaen.ecole.ludistreet.models.Wall;
 import com.ensicaen.ecole.ludistreet.rest.WallsRestClient;
 import com.loopj.android.http.TextHttpResponseHandler;
 
+import org.json.JSONException;
+
 import actions.Action;
 import actions.ActionMoveCameraBuffered;
 import actions.ActionRotateCameraBuffered;
@@ -90,6 +92,13 @@ public class WallSetup extends Setup {
                         public boolean execute() {
                             square.setColor(color);
                             wall.setColorPixel(finalI, finalJ, color);
+
+                            // Mise en string de la nouvelle image
+                            try {
+                                wall.updateDrawingString();
+                            } catch (JSONException e) {
+                                Log.e("SAUVEGARDE DU DESSIN", "UNE ERREUR EST SURVENUE");
+                            }
 
                             WallsRestClient wallsRestClient = new WallsRestClient();
                             wallsRestClient.patchWallDrawing(wall.getUuid(), wall, new TextHttpResponseHandler() {

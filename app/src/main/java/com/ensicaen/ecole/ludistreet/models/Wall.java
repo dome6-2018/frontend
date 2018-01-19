@@ -1,6 +1,11 @@
 package com.ensicaen.ecole.ludistreet.models;
 
-import java.util.Date;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import gl.Color;
@@ -12,7 +17,8 @@ public class Wall {
 
     private int resX;
     private int resY;
-    private Color[][] drawing;
+    private String drawing;
+    private Color[][] drawingArray;
     private double latitude;
     private double longitude;
     private List<Beacon> beacons;
@@ -27,24 +33,45 @@ public class Wall {
     }
 
     public void initBlankDrawing() {
-        drawing = new Color[this.resX][];
+        drawingArray = new Color[this.resX][];
         for (int i = 0; i < this.resX; i++) {
-            drawing[i] = new Color[this.resY];
+            drawingArray[i] = new Color[this.resY];
         }
 
         for (int i = 0; i < this.resX; i++) {
             for (int j = 0; j < this.resY; j++) {
-                drawing[i][j] = new Color(1.0f, 1.0f, 1.0f, 0.9f);
+                drawingArray[i][j] = new Color(1.0f, 1.0f, 1.0f, 0.9f);
             }
         }
     }
 
+    public void loadDrawingFromString() throws JSONException {
+        Gson gson = new Gson();
+        Color[][] dataMap = gson.fromJson(drawing, Color[][].class);
+        int x = 0;
+        int y;
+        for (Color[] i : dataMap) {
+            y = 0;
+
+            for (Color j : i) {
+                drawingArray[x][y] = j;
+                y++;
+            }
+            x++;
+        }
+    }
+
+    public void updateDrawingString() throws JSONException {
+        Gson gson = new Gson();
+        drawing = gson.toJson(drawingArray);
+    }
+
     public void setColorPixel(int x, int y, Color c){
-        drawing[x][y] = c;
+        drawingArray[x][y] = c;
     }
 
     public Color getPixel(int x, int y){
-        return drawing[x][y];
+        return drawingArray[x][y];
     }
 
     public String getUuid() {
@@ -79,12 +106,12 @@ public class Wall {
         this.resY = resY;
     }
 
-    public Color[][] getDrawing() {
-        return drawing;
+    public Color[][] getDrawingArray() {
+        return drawingArray;
     }
 
-    public void setDrawing(Color[][] drawing) {
-        this.drawing = drawing;
+    public void setDrawingArray(Color[][] drawingArray) {
+        this.drawingArray = drawingArray;
     }
 
     public double getLatitude() {
@@ -117,5 +144,13 @@ public class Wall {
 
     public void setLocked(boolean locked) {
         this.locked = locked;
+    }
+
+    public String getDrawing() {
+        return drawing;
+    }
+
+    public void setDrawing(String drawing) {
+        this.drawing = drawing;
     }
 }
