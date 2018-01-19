@@ -68,11 +68,13 @@
         <activity
             android:name=".activities.ChoiceWallActivity"
             android:label="@string/title_activity_choice"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".activities.SearchWallActivity"
             android:label="@string/title_activity_nfcreader"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
