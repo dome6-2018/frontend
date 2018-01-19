@@ -45,9 +45,6 @@ public class LoginTask extends AsyncTask<LoginModel, Void , Boolean> {
 
             Intent intent = new Intent(_activity, ChoiceActivity.class);
             _activity.startActivity(intent);
-            // WallModel w = new WallModel(2,2);
-            // ARView arv = new ARView(w);
-            // ArActivity.startWithSetup(_activity, arv.getSetup());
             return;
         }
         Toast.makeText(_activity, "Erreur lors de la connexion",
