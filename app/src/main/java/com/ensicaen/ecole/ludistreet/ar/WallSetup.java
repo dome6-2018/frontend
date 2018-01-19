@@ -95,12 +95,10 @@ public class WallSetup extends Setup {
                             wallsRestClient.patchWallDrawing(wall.getUuid(), wall, new TextHttpResponseHandler() {
                                 @Override
                                 public void onSuccess(int statusCode, Header[] headers, String res) {
-                                    Log.e("STATUSCODE : " + statusCode, "RES" + res);
                                 }
 
                                 @Override
                                 public void onFailure(int statusCode, Header[] headers, String res, Throwable throwable) {
-                                    Log.e("STATUSCODE : " + statusCode, "RES" + res);
                                 }
 
                                 @Override

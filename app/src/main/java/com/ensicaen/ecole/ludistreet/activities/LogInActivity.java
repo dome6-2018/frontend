@@ -45,7 +45,7 @@ public class LogInActivity extends AppCompatActivity {
                         if (HttpClient.token == null) {
                             Toast.makeText(LogInActivity.this, "Erreur lors de la connexion", Toast.LENGTH_LONG).show();
                         } else {
-                            Intent intent = new Intent(LogInActivity.this, SearchWallActivity.class);
+                            Intent intent = new Intent(LogInActivity.this, ChoiceWallActivity.class);
                             startActivity(intent);
                         }
                     }
