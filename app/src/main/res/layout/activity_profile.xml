@@ -190,7 +190,7 @@
                         android:ems="10"
                         android:fontFamily="Segoe UI"
                         android:hint="MOT DE PASSE"
-                        android:inputType="textPersonName"
+                        android:inputType="textPassword"
                         android:layout_marginRight="5dp"
                         android:textAlignment="center"
                         android:textSize="15sp"
@@ -206,7 +206,7 @@
                         android:ems="10"
                         android:fontFamily="Segoe UI"
                         android:hint="VERIFICATION"
-                        android:inputType="textPersonName"
+                        android:inputType="textPassword"
                         android:textAlignment="center"
                         android:textSize="15sp"
                         android:textStyle="bold" />
