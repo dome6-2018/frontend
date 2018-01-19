@@ -40,8 +40,9 @@ public class RegisterActivity extends AppCompatActivity {
                     securityRestClient.postRegister(register, new TextHttpResponseHandler() {
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, String res) {
-                            Intent intent = new Intent(RegisterActivity.this, LogInActivity.class);
-                            startActivity(intent);
+//                            Intent intent = new Intent(RegisterActivity.this, LogInActivity.class);
+//                            startActivity(intent);
+                            RegisterActivity.this.finish();
                         }
 
                         @Override
