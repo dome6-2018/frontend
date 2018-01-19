@@ -73,9 +73,6 @@ public class StartActivity extends AppCompatActivity {
                 }
             });
         }
-
-
-
     }
 
     @Override
@@ -86,21 +83,6 @@ public class StartActivity extends AppCompatActivity {
             bottomImage.setImageResource(R.drawable.click_to_start);
         }else{
             bottomImage.setImageResource(R.drawable.log_in);
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
-            case (CONNECT_REQUEST) : {
-                if (resultCode == Activity.RESULT_OK && data.getBooleanExtra("connected", false)) {
-
-                    final ImageView bottomImage = (ImageView) findViewById(R.id.click_to_start);
-                    bottomImage.setImageResource(R.drawable.click_to_start);
-                }
-                break;
-            }
         }
     }
 }

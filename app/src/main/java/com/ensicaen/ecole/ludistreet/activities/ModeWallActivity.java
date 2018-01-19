@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ensicaen.ecole.ludistreet.R;
+import com.ensicaen.ecole.ludistreet.ar.ARImageSetup;
+import com.ensicaen.ecole.ludistreet.ar.ARImageView;
 import com.ensicaen.ecole.ludistreet.ar.ARView;
 import com.ensicaen.ecole.ludistreet.models.Wall;
 import com.ensicaen.ecole.ludistreet.rest.WallsRestClient;
@@ -74,9 +76,8 @@ public class ModeWallActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO : Travailler le mode jeu
 
-                Wall wall = new Wall(10,10);
-                ARView arv = new ARView(wall);
-                ArActivity.startWithSetup(ModeWallActivity.this, arv.getSetup());
+                ARImageView ari = new ARImageView(ModeWallActivity.this, R.drawable.logo_image);
+                ArActivity.startWithSetup(ModeWallActivity.this, ari.getSetup());
             }
         });
     }

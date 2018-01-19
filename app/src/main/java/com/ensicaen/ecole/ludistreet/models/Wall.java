@@ -2,10 +2,7 @@ package com.ensicaen.ecole.ludistreet.models;
 
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.List;
 
 import gl.Color;
