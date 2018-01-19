@@ -67,7 +67,7 @@ public class ARImageSetup extends Setup {
 
         Bitmap b = BitmapFactory.decodeResource(ctx.getResources(), id);
         MeshComponent s = objectFactory.newTexturedSquare("expo", b);
-        s.setScale(new Vec(4,4,4));
+        s.setScale(new Vec(8,8,8));
         s.setPosition(new Vec(30,0, 0));
         s.setRotation(new Vec(0,0,90));
         world.add(s);

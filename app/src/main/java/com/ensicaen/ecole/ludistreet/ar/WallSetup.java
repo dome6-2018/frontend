@@ -125,7 +125,7 @@ public class WallSetup extends Setup {
                 }
 
                 square.setRotation(new Vec(0, 90, 0));
-                square.setPosition(new Vec(50, 2 * j, 2*i));
+                square.setPosition(new Vec(30, 2 * j, 2*i));
                 compasrose.addChild(square);
             }
         }
