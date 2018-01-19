@@ -90,8 +90,16 @@ public class WallSetup extends Setup {
                     square.setOnClickCommand(new Command() {
                         @Override
                         public boolean execute() {
-                            square.setColor(color);
-                            wall.setColorPixel(finalI, finalJ, color);
+                            Color white = new Color("white");
+                            Color black = new Color("black");
+
+                            if (wall.getPixel(finalI,finalJ).equals(black)) {
+                                square.setColor(white);
+                                wall.setColorPixel(finalI, finalJ, white);
+                            } else {
+                                square.setColor(black);
+                                wall.setColorPixel(finalI, finalJ, black);
+                            }
 
                             // Mise en string de la nouvelle image
                             try {
