@@ -34,8 +34,8 @@ public class ProfileActivity extends AppCompatActivity {
                 User user = gson.fromJson(res, new TypeToken<User>(){}.getType());
 
                 ((EditText) findViewById(R.id.editText_id)).setText(Integer.toString(user.getId()));
-                ((EditText) findViewById(R.id.editText_username)).setText(user.getUsername());
-                ((EditText) findViewById(R.id.editText_points)).setText(Integer.toString(user.getPoints()));
+                ((EditText) findViewById(R.id.editText_username)).setHint(user.getUsername());
+                ((EditText) findViewById(R.id.editText_points)).setHint(Integer.toString(user.getPoints()));
 
                 ((EditText) findViewById(R.id.editText_lastname)).setText(user.getLastname());
                 ((EditText) findViewById(R.id.editText_firstname)).setText(user.getFirstname());
