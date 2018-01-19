@@ -7,10 +7,22 @@
     android:background="@color/backgroundWhite"
     tools:context="com.ensicaen.ecole.ludistreet.activities.ChoiceWallActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/backgroundOrange"
+        android:elevation="4dp"
+        app:titleTextColor="@color/backgroundOrange"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         android:orientation="vertical">
+
 
         <RelativeLayout
             android:id="@+id/RelativeLayout01"
