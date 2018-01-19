@@ -44,7 +44,7 @@ public class SearchWallActivity extends FragmentActivity implements OnMapReadyCa
         map.setMyLocationEnabled(true);
 
         // Centrage de la carte en fonction des coordonnées GPS
-        LocationListener locationListenerGPS = new LocationListener() {
+        /*LocationListener locationListenerGPS = new LocationListener() {
             @Override
             public void onLocationChanged(android.location.Location location) {
                 double latitude=location.getLatitude();
@@ -66,7 +66,7 @@ public class SearchWallActivity extends FragmentActivity implements OnMapReadyCa
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates( LocationManager.GPS_PROVIDER,
                 2000,
-                10, locationListenerGPS);
+                10, locationListenerGPS);*/
 
         // Mise à jour des marqueurs sur la carte
         WallsRestClient wallsRestClient = new WallsRestClient();
