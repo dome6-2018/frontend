@@ -1,9 +1,5 @@
 package com.ensicaen.ecole.ludistreet.models;
 
-/**
- * Created by Thibaud on 18/01/2018.
- */
-
 public class User {
 
     private int id;
@@ -14,17 +10,19 @@ public class User {
 
     private String lastname;
 
+    private String password;
+
     private String email;
 
-    private int point;
+    private int points;
 
-    public User(int id, String username, String firstname, String lastname, String email, int point) {
+    public User(int id, String firstname, String lastname, String password, String email) {
         this.id = id;
-        this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.password = password;
         this.email = email;
-        this.point = point;
+        this.points = points;
     }
 
     public int getId() {
@@ -59,6 +57,14 @@ public class User {
         this.lastname = lastname;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -67,11 +73,11 @@ public class User {
         this.email = email;
     }
 
-    public int getPoint() {
-        return point;
+    public int getPoints() {
+        return points;
     }
 
-    public void setPoint(int point) {
-        this.point = point;
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
