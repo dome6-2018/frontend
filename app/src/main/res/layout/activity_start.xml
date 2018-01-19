@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundWhite"
-    tools:context="com.ensicaen.ecole.ludistreet.StartActivity">
+    tools:context="com.ensicaen.ecole.ludistreet.activities.StartActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

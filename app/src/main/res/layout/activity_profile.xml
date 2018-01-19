@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#84CCD8"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.ensicaen.ecole.ludistreet.ProfileActivity">
+    tools:context="com.ensicaen.ecole.ludistreet.activities.ProfileActivity">
 
     <ScrollView
         android:layout_width="match_parent"

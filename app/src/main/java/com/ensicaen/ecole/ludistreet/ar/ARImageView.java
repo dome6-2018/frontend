@@ -1,4 +1,4 @@
-package com.ensicaen.ecole.ludistreet.RA;
+package com.ensicaen.ecole.ludistreet.ar;
 
 import android.content.Context;
 

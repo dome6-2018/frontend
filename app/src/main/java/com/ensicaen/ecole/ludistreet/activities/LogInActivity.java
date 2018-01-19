@@ -1,4 +1,4 @@
-package com.ensicaen.ecole.ludistreet;
+package com.ensicaen.ecole.ludistreet.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.ensicaen.ecole.ludistreet.model.Login;
+import com.ensicaen.ecole.ludistreet.R;
+import com.ensicaen.ecole.ludistreet.models.Login;
 import com.ensicaen.ecole.ludistreet.rest.HttpClient;
 import com.ensicaen.ecole.ludistreet.rest.SecurityRestClient;
 

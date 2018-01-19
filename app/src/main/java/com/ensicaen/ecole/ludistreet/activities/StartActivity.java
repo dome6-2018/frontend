@@ -1,4 +1,4 @@
-package com.ensicaen.ecole.ludistreet;
+package com.ensicaen.ecole.ludistreet.activities;
 
 import android.Manifest;
 import android.app.Activity;
@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.ensicaen.ecole.ludistreet.R;
 import com.ensicaen.ecole.ludistreet.rest.HttpClient;
 
 public class StartActivity extends AppCompatActivity {
@@ -59,7 +60,7 @@ public class StartActivity extends AppCompatActivity {
             bottomImage.setImageResource(R.drawable.click_to_start);
             bottomImage.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(StartActivity.this, ChoiceActivity.class);
+                    Intent intent = new Intent(StartActivity.this, ChoiceWallActivity.class);
                     startActivity(intent);
                 }
             });

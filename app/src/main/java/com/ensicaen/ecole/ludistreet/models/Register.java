@@ -1,6 +1,4 @@
-package com.ensicaen.ecole.ludistreet.model;
-
-import java.util.List;
+package com.ensicaen.ecole.ludistreet.models;
 
 /**
  * Created by Thibaud on 16/01/2018.

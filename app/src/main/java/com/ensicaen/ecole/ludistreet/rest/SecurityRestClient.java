@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.ensicaen.ecole.ludistreet.ChoiceActivity;
-import com.ensicaen.ecole.ludistreet.LogInActivity;
-import com.ensicaen.ecole.ludistreet.model.Login;
-import com.ensicaen.ecole.ludistreet.model.Register;
+import com.ensicaen.ecole.ludistreet.activities.ChoiceWallActivity;
+import com.ensicaen.ecole.ludistreet.activities.LogInActivity;
+import com.ensicaen.ecole.ludistreet.models.Login;
+import com.ensicaen.ecole.ludistreet.models.Register;
 import com.google.gson.Gson;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -48,7 +48,7 @@ public class SecurityRestClient {
                     }
                 }
 
-                Intent intent = new Intent(activity, ChoiceActivity.class);
+                Intent intent = new Intent(activity, ChoiceWallActivity.class);
                 activity.startActivity(intent);
             }
 

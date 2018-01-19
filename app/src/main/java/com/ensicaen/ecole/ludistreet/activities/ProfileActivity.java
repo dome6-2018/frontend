@@ -1,4 +1,4 @@
-package com.ensicaen.ecole.ludistreet;
+package com.ensicaen.ecole.ludistreet.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.ensicaen.ecole.ludistreet.model.User;
+import com.ensicaen.ecole.ludistreet.R;
+import com.ensicaen.ecole.ludistreet.models.User;
 
 public class ProfileActivity extends AppCompatActivity {
 

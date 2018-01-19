@@ -1,4 +1,4 @@
-package com.ensicaen.ecole.ludistreet;
+package com.ensicaen.ecole.ludistreet.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,11 +11,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toolbar;
 
-import com.ensicaen.ecole.ludistreet.RA.ARImageSetup;
-import com.ensicaen.ecole.ludistreet.RA.WallSetup;
-import com.ensicaen.ecole.ludistreet.beacon.ThreadBeacon;
+import com.ensicaen.ecole.ludistreet.R;
+import com.ensicaen.ecole.ludistreet.ar.ThreadBeacon;
 
-import com.ensicaen.ecole.ludistreet.model.Beacon;
 import com.estimote.coresdk.observation.region.beacon.BeaconRegion;
 import com.estimote.coresdk.service.BeaconManager;
 

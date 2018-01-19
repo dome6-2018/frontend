@@ -1,4 +1,4 @@
-package com.ensicaen.ecole.ludistreet.beacon;
+package com.ensicaen.ecole.ludistreet.ar;
 
 import java.util.ArrayList;
 import java.util.Collections;

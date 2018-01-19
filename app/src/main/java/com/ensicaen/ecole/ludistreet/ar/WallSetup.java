@@ -1,10 +1,9 @@
-package com.ensicaen.ecole.ludistreet.RA;
+package com.ensicaen.ecole.ludistreet.ar;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
+
+import com.ensicaen.ecole.ludistreet.models.Wall;
+import com.ensicaen.ecole.ludistreet.rest.WallsRestClient;
 
 import actions.Action;
 import actions.ActionMoveCameraBuffered;
@@ -13,12 +12,16 @@ import actions.ActionRotateCameraBuffered3;
 import actions.ActionRotateCameraBuffered4;
 import actions.ActionRotateCameraUnbuffered;
 import actions.ActionRotateCameraUnbuffered2;
+import actions.ActionUseCameraAngles2;
+import commands.Command;
 import geo.GeoObj;
+import gl.Color;
 import gl.CustomGLSurfaceView;
 import gl.GL1Renderer;
 import gl.GLCamera;
 import gl.GLFactory;
 import gl.scenegraph.MeshComponent;
+import gl.scenegraph.Shape;
 import gui.GuiSetup;
 import system.EventManager;
 import system.Setup;
@@ -30,7 +33,7 @@ import worldData.World;
  * Created by jorand on 18/01/2018.
  */
 
-public class ARImageSetup extends Setup {
+public class WallSetup extends Setup {
     private GLCamera camera;
     private World world;
     private Action rotActionB1;
@@ -38,12 +41,13 @@ public class ARImageSetup extends Setup {
     private Action rotActionB4;
     private Action rotActionUnB;
     private Action rotActionUnB2;
-    private int id;
-    private Context ctx;
+    private Wall _model;
+    private Color _color;
 
-    public ARImageSetup(Context ctx, int idResource) {
-        id = idResource;
-        this.ctx = ctx;
+
+    public WallSetup(Color col, Wall mod) {
+        _model = mod;
+        _color = col;
     }
 
     @Override
@@ -67,12 +71,40 @@ public class ARImageSetup extends Setup {
 
         world = new World(camera);
 
-        Bitmap b = BitmapFactory.decodeResource(ctx.getResources(), id);
-        MeshComponent s = objectFactory.newTexturedSquare("expo", b);
-        s.setScale(new Vec(4,4,4));
-        s.setPosition(new Vec(30,0, 0));
-        s.setRotation(new Vec(0,0,90));
-        world.add(s);
+        MeshComponent compasrose = new Shape();
+
+        int x = _model.getResX();
+        int y = _model.getResY();
+
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                final MeshComponent square = objectFactory.newSquare(_model.getPixel(i,j));
+                final int finalI = i;
+                final int finalJ = j;
+
+                if (!_model.isLocked()) {
+                    square.setOnClickCommand(new Command() {
+                        @Override
+                        public boolean execute() {
+                            square.setColor(_color);
+                            _model.setColorPixel(finalI, finalJ, _color);
+
+                            WallsRestClient wallsRestClient = new WallsRestClient(null);
+                            wallsRestClient.patchWallDrawing(_model.getUuid(), _model);
+
+                            return true;
+                        }
+                    });
+                }
+
+                square.setRotation(new Vec(0, 90, 0));
+                square.setPosition(new Vec(50, 2 * j, 2*i));
+                compasrose.addChild(square);
+            }
+        }
+
+        currentPosition.setComp(compasrose);
+        world.add(currentPosition);
 
         renderer.addRenderElement(world);
     }
@@ -85,6 +117,19 @@ public class ARImageSetup extends Setup {
         eventManager.addOnOrientationChangedAction(rotActionB1);
         eventManager.addOnTrackballAction(new ActionMoveCameraBuffered(camera,
                 5, 25));
+
+        eventManager
+                .addOnOrientationChangedAction(new ActionUseCameraAngles2() {
+
+                    @Override
+                    public void onAnglesUpdated(float pitch, float roll,
+                                                float compassAzimuth) {
+                    /*
+                     * the angles could be used in some way here..
+                     */
+                    }
+                });
+
     }
 
 
@@ -102,5 +147,9 @@ public class ARImageSetup extends Setup {
     public void _e2_addElementsToGuiSetup(GuiSetup guiSetup, Activity activity) {
     }
 
+
+    public Wall getModel() {
+        return _model;
+    }
 
 }

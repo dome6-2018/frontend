@@ -1,6 +1,5 @@
-package com.ensicaen.ecole.ludistreet.beacon;
+package com.ensicaen.ecole.ludistreet.ar;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;

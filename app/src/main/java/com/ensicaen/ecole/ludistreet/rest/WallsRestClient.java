@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.ensicaen.ecole.ludistreet.ModeActivity;
-import com.ensicaen.ecole.ludistreet.SearchWallActivity;
-import com.ensicaen.ecole.ludistreet.model.Wall;
+import com.ensicaen.ecole.ludistreet.activities.ModeWallActivity;
+import com.ensicaen.ecole.ludistreet.activities.SearchWallActivity;
+import com.ensicaen.ecole.ludistreet.models.Wall;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
@@ -58,7 +58,7 @@ public class WallsRestClient {
         HttpClient.get("walls/" + uuid, null, new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String res) {
-                Intent intent = new Intent(activity, ModeActivity.class);
+                Intent intent = new Intent(activity, ModeWallActivity.class);
                 activity.startActivity(intent);
             }
 

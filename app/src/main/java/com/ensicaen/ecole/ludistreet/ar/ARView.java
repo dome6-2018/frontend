@@ -1,6 +1,6 @@
-package com.ensicaen.ecole.ludistreet.RA;
+package com.ensicaen.ecole.ludistreet.ar;
 
-import com.ensicaen.ecole.ludistreet.model.Wall;
+import com.ensicaen.ecole.ludistreet.models.Wall;
 
 import gl.Color;
 

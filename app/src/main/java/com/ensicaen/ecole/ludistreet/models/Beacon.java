@@ -1,4 +1,4 @@
-package com.ensicaen.ecole.ludistreet.model;
+package com.ensicaen.ecole.ludistreet.models;
 
 import java.util.Date;
 

@@ -1,5 +1,6 @@
-package com.ensicaen.ecole.ludistreet;
+package com.ensicaen.ecole.ludistreet.activities;
 
+import com.ensicaen.ecole.ludistreet.R;
 import com.ensicaen.ecole.ludistreet.rest.WallsRestClient;
 import com.google.android.gms.maps.*;
 import android.os.Bundle;
@@ -12,7 +13,7 @@ public class SearchWallActivity extends FragmentActivity implements OnMapReadyCa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_wall);
+        setContentView(com.ensicaen.ecole.ludistreet.R.layout.activity_search_wall);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

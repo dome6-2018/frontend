@@ -1,4 +1,4 @@
-package com.ensicaen.ecole.ludistreet;
+package com.ensicaen.ecole.ludistreet.activities;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -15,9 +15,10 @@ import android.nfc.tech.NfcF;
 import android.nfc.tech.NfcV;
 import android.os.Bundle;
 
+import com.ensicaen.ecole.ludistreet.R;
 import com.ensicaen.ecole.ludistreet.rest.WallsRestClient;
 
-public class SelectWallActivity extends Activity {
+public class ScanWallActivity extends Activity {
 
     // list of NFC technologies detected:
     private final String[][] techList = new String[][] {
@@ -35,7 +36,7 @@ public class SelectWallActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nfctag);
+        setContentView(R.layout.activity_scan_wall);
     }
 
 
@@ -65,14 +66,14 @@ public class SelectWallActivity extends Activity {
     @Override
     protected void onNewIntent(Intent intent) {
         if (intent.getAction().equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
-            String wallUuid = ByteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID));
+            String wallUuid = byteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID));
 
-            WallsRestClient wallsRestClient = new WallsRestClient(SelectWallActivity.this);
+            WallsRestClient wallsRestClient = new WallsRestClient(ScanWallActivity.this);
             wallsRestClient.getWall(wallUuid);
         }
     }
 
-    private String ByteArrayToHexString(byte [] inarray) {
+    private String byteArrayToHexString(byte [] inarray) {
         int i, j, in;
         String [] hex = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
         String out= "";

@@ -3,7 +3,7 @@ package com.ensicaen.ecole.ludistreet.rest;
 import android.app.Activity;
 import android.widget.Toast;
 
-import com.ensicaen.ecole.ludistreet.model.User;
+import com.ensicaen.ecole.ludistreet.models.User;
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.TextHttpResponseHandler;

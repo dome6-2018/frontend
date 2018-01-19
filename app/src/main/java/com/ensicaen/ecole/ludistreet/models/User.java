@@ -1,4 +1,4 @@
-package com.ensicaen.ecole.ludistreet.model;
+package com.ensicaen.ecole.ludistreet.models;
 
 /**
  * Created by Thibaud on 18/01/2018.

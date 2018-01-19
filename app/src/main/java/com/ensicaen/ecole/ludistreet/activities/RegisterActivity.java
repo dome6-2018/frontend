@@ -1,4 +1,4 @@
-package com.ensicaen.ecole.ludistreet;
+package com.ensicaen.ecole.ludistreet.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.ensicaen.ecole.ludistreet.model.Register;
+import com.ensicaen.ecole.ludistreet.R;
+import com.ensicaen.ecole.ludistreet.models.Register;
 import com.ensicaen.ecole.ludistreet.rest.SecurityRestClient;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -15,7 +16,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subscribe);
+        setContentView(R.layout.activity_register);
 
         ImageView subButton = (ImageView) findViewById(R.id.sub_validate);
 

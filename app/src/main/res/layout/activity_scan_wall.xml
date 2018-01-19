@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundOrange"
-    tools:context="com.ensicaen.ecole.ludistreet.SelectWallActivity">
+    tools:context="com.ensicaen.ecole.ludistreet.activities.ScanWallActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
