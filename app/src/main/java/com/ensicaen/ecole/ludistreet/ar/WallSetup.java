@@ -91,7 +91,7 @@ public class WallSetup extends Setup {
                             square.setColor(color);
                             wall.setColorPixel(finalI, finalJ, color);
 
-                            WallsRestClient wallsRestClient = new WallsRestClient(null);
+                            WallsRestClient wallsRestClient = new WallsRestClient();
                             wallsRestClient.patchWallDrawing(wall.getUuid(), wall, new TextHttpResponseHandler() {
                                 @Override
                                 public void onSuccess(int statusCode, Header[] headers, String res) {

@@ -1,5 +1,6 @@
 package com.ensicaen.ecole.ludistreet.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.Toast;
 import com.ensicaen.ecole.ludistreet.R;
 import com.ensicaen.ecole.ludistreet.models.Register;
 import com.ensicaen.ecole.ludistreet.rest.SecurityRestClient;
+import com.loopj.android.http.TextHttpResponseHandler;
+
+import cz.msebera.android.httpclient.Header;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -32,10 +36,23 @@ public class RegisterActivity extends AppCompatActivity {
                 if (password.equals(passwordConfirm)) {
                     Register register = new Register(email, name, surname, password, login);
 
-                    SecurityRestClient securityRestClient = new SecurityRestClient(RegisterActivity.this);
-                    securityRestClient.postRegister(register);
+                    SecurityRestClient securityRestClient = new SecurityRestClient();
+                    securityRestClient.postRegister(register, new TextHttpResponseHandler() {
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, String res) {
+                            Intent intent = new Intent(RegisterActivity.this, LogInActivity.class);
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                            Toast.makeText(RegisterActivity.this,
+                                    "Erreur lors de l'inscription", Toast.LENGTH_LONG).show();
+                        }
+                    });
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Les mots de passe sont differents !", Toast.LENGTH_LONG);
+                    Toast.makeText(RegisterActivity.this,
+                            "Les mots de passe sont differents !", Toast.LENGTH_LONG).show();
                 }
             }
         });

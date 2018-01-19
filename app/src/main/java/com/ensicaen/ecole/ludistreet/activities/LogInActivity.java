@@ -6,11 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ensicaen.ecole.ludistreet.R;
 import com.ensicaen.ecole.ludistreet.models.Login;
 import com.ensicaen.ecole.ludistreet.rest.HttpClient;
 import com.ensicaen.ecole.ludistreet.rest.SecurityRestClient;
+import com.loopj.android.http.TextHttpResponseHandler;
+
+import cz.msebera.android.httpclient.Header;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -27,8 +31,30 @@ public class LogInActivity extends AppCompatActivity {
                 Login loginModel = new Login(login, password);
 
                 // Envoie des donnees au serveur
-                SecurityRestClient securityRestClient = new SecurityRestClient(LogInActivity.this);
-                securityRestClient.postLogin(loginModel);
+                SecurityRestClient securityRestClient = new SecurityRestClient();
+                securityRestClient.postLogin(loginModel, new TextHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String res) {
+                        HttpClient.token = null;
+                        for (Header header : headers) {
+                            if ("Authorization".equals(header.getName())) {
+                                HttpClient.token = header.getValue();
+                            }
+                        }
+
+                        if (HttpClient.token == null) {
+                            Toast.makeText(LogInActivity.this, "Erreur lors de la connexion", Toast.LENGTH_LONG).show();
+                        } else {
+                            Intent intent = new Intent(LogInActivity.this, SearchWallActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                        Toast.makeText(LogInActivity.this, "Erreur lors de la connexion", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 

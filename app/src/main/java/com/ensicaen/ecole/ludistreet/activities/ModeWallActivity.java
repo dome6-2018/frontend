@@ -36,7 +36,7 @@ public class ModeWallActivity extends AppCompatActivity {
         paint.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Récupération des données du mur
-                WallsRestClient wallsRestClient = new WallsRestClient(ModeWallActivity.this);
+                WallsRestClient wallsRestClient = new WallsRestClient();
                 wallsRestClient.getWall(wallUuid, new TextHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, String res) {

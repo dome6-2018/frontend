@@ -74,7 +74,7 @@ public class ScanWallActivity extends Activity {
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
             wallUuid = byteArrayToHexString(intent.getByteArrayExtra(NfcAdapter.EXTRA_ID));
 
-            WallsRestClient wallsRestClient = new WallsRestClient(ScanWallActivity.this);
+            WallsRestClient wallsRestClient = new WallsRestClient();
             wallsRestClient.getWall(wallUuid, new TextHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, String res) {
