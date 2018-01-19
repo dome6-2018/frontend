@@ -1,5 +1,7 @@
 package com.ensicaen.ecole.ludistreet.models;
 
+import com.google.gson.Gson;
+
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +26,30 @@ public class Wall {
         this.resY = resY;
 
         initBlankDrawing();
+    }
+
+
+    public Wall(int resX, int resY, String json) {
+        this.resX = resX;
+        this.resY = resY;
+
+        drawing = new Color[resX][];
+        for (int i = 0; i < resX; i++) {
+            drawing[i] = new Color[resY];
+        }
+
+        Gson gson = new Gson();
+        Color[][] dataMap = gson.fromJson(json, Color[][].class);
+        int x = 0;
+        int y;
+        for (Color[] i : dataMap) {
+            y = 0;
+            for (Color j : i) {
+                drawing[x][y] = j;
+                y++;
+            }
+            x++;
+        }
     }
 
     public void initBlankDrawing() {
